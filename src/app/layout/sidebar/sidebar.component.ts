@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarService } from '../../shared/services/sidebar.service';
 
 interface MenuItem {
   label: string;
@@ -15,15 +16,28 @@ interface MenuItem {
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <aside class="kia-sidebar" [class.collapsed]="isCollapsed">
+    <!-- Mobile Backdrop -->
+    <div class="sidebar-backdrop" 
+         [class.open]="isMobileOpen" 
+         (click)="closeMobileSidebar()">
+    </div>
+
+    <aside class="kia-sidebar" 
+           [class.collapsed]="isCollapsed"
+           [class.mobile-open]="isMobileOpen">
       <div class="sidebar-header">
         <button 
           class="collapse-btn" 
           type="button" 
-          (click)="toggleSidebar()"
+          (click)="toggleCollapse()"
           [attr.aria-label]="isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'"
         >
           <i class="pi" [class.pi-angle-left]="!isCollapsed" [class.pi-angle-right]="isCollapsed"></i>
+        </button>
+        
+        <!-- Mobile Close Button -->
+        <button class="mobile-close-btn" type="button" (click)="closeMobileSidebar()" title="Close Menu">
+          <i class="pi pi-times"></i>
         </button>
       </div>
 
@@ -35,6 +49,7 @@ interface MenuItem {
               routerLinkActive="active"
               class="nav-link"
               [title]="item.label"
+              (click)="onNavLinkClick()"
             >
               <i class="nav-icon pi" [class]="item.icon"></i>
               <span class="nav-label">{{ item.label }}</span>
@@ -61,8 +76,9 @@ interface MenuItem {
   `,
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit {
   isCollapsed = false;
+  isMobileOpen = false;
 
   menuItems: MenuItem[] = [
     {
@@ -99,7 +115,29 @@ export class SidebarComponent {
     }
   ];
 
-  toggleSidebar(): void {
-    this.isCollapsed = !this.isCollapsed;
+  constructor(private sidebarService: SidebarService) {}
+
+  ngOnInit(): void {
+    // Subscribe to sidebar state
+    this.sidebarService.isOpen$.subscribe(isOpen => {
+      this.isMobileOpen = isOpen;
+    });
+
+    this.sidebarService.isCollapsed$.subscribe(isCollapsed => {
+      this.isCollapsed = isCollapsed;
+    });
+  }
+
+  toggleCollapse(): void {
+    this.sidebarService.toggleCollapse();
+  }
+
+  closeMobileSidebar(): void {
+    this.sidebarService.closeSidebar();
+  }
+
+  onNavLinkClick(): void {
+    // Close mobile sidebar when a navigation link is clicked
+    this.sidebarService.closeSidebar();
   }
 } 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { SidebarService } from '../../shared/services/sidebar.service';
 
 @Component({
   selector: 'app-header',
@@ -9,8 +10,13 @@ import { RouterModule } from '@angular/router';
   template: `
     <header class="kia-header">
       <div class="header-container">
-        <!-- Left: Logo & System Info -->
+        <!-- Left: Mobile Menu Toggle & Logo -->
         <div class="header-left">
+          <!-- Mobile Menu Toggle -->
+          <button class="mobile-menu-btn" type="button" (click)="toggleMobileMenu()" title="Toggle Menu">
+            <i class="pi pi-bars"></i>
+          </button>
+          
           <div class="logo-section">
             <img src="/KiaLogo.png" alt="Kia" class="kia-logo" />
             <div class="system-info">
@@ -82,7 +88,13 @@ import { RouterModule } from '@angular/router';
 export class HeaderComponent {
   isUserMenuOpen = false;
 
+  constructor(private sidebarService: SidebarService) {}
+
   toggleUserMenu(): void {
     this.isUserMenuOpen = !this.isUserMenuOpen;
+  }
+
+  toggleMobileMenu(): void {
+    this.sidebarService.toggleSidebar();
   }
 } 

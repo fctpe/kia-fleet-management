@@ -58,9 +58,7 @@ interface AlertItem {
       <div class="metrics-grid">
         <div class="metric-card card--interactive" 
              [class.metric-card--selected]="selectedMetric === 'vehicles'" 
-             (click)="selectMetric('vehicles')"
-             [attr.data-aos]="'fade-up'"
-             [attr.data-aos-delay]="'100'">
+             (click)="selectMetric('vehicles')">
           <div class="metric-icon">
             <i class="pi pi-car"></i>
           </div>
@@ -79,9 +77,7 @@ interface AlertItem {
 
         <div class="metric-card card--interactive" 
              [class.metric-card--selected]="selectedMetric === 'uptime'" 
-             (click)="selectMetric('uptime')"
-             [attr.data-aos]="'fade-up'"
-             [attr.data-aos-delay]="'200'">
+             (click)="selectMetric('uptime')">
           <div class="metric-icon">
             <i class="pi pi-check-circle"></i>
           </div>
@@ -103,9 +99,7 @@ interface AlertItem {
 
         <div class="metric-card card--interactive" 
              [class.metric-card--selected]="selectedMetric === 'distance'" 
-             (click)="selectMetric('distance')"
-             [attr.data-aos]="'fade-up'"
-             [attr.data-aos-delay]="'300'">
+             (click)="selectMetric('distance')">
           <div class="metric-icon">
             <i class="pi pi-map"></i>
           </div>
@@ -124,9 +118,7 @@ interface AlertItem {
 
         <div class="metric-card card--interactive" 
              [class.metric-card--selected]="selectedMetric === 'efficiency'" 
-             (click)="selectMetric('efficiency')"
-             [attr.data-aos]="'fade-up'"
-             [attr.data-aos-delay]="'400'">
+             (click)="selectMetric('efficiency')">
           <div class="metric-icon">
             <i class="pi pi-bolt"></i>
           </div>
@@ -145,10 +137,10 @@ interface AlertItem {
       </div>
 
       <!-- Enhanced Interactive Features Section -->
-      <div class="features-section" data-aos="fade-up" data-aos-delay="500">
+      <div class="features-section">
         <h2>Explore Fleet Management Features</h2>
         <div class="features-grid">
-          <div class="feature-demo card--interactive" (click)="navigateToFleet()" data-aos="zoom-in" data-aos-delay="100">
+          <div class="feature-demo card--interactive" (click)="navigateToFleet()">
             <div class="feature-header">
               <i class="pi pi-car"></i>
               <h3>Live Fleet Tracking</h3>
@@ -171,7 +163,7 @@ interface AlertItem {
             </button>
           </div>
 
-          <div class="feature-demo card--interactive" (click)="navigateToEnergy()" data-aos="zoom-in" data-aos-delay="200">
+          <div class="feature-demo card--interactive" (click)="navigateToEnergy()">
             <div class="feature-header">
               <i class="pi pi-bolt"></i>
               <h3>Energy Analytics</h3>
@@ -188,7 +180,7 @@ interface AlertItem {
             </button>
           </div>
 
-          <div class="feature-demo card--interactive" (click)="navigateToSafety()" data-aos="zoom-in" data-aos-delay="300">
+          <div class="feature-demo card--interactive" (click)="navigateToSafety()">
             <div class="feature-header">
               <i class="pi pi-shield"></i>
               <h3>Safety Intelligence</h3>
@@ -215,7 +207,7 @@ interface AlertItem {
       </div>
 
       <!-- Real-time Data Section -->
-      <div class="realtime-section" data-aos="fade-up" data-aos-delay="700">
+      <div class="realtime-section">
         <h2>Real-time Fleet Status</h2>
         <div class="realtime-grid">
           <div class="realtime-card">

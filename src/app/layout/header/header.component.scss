@@ -19,8 +19,46 @@
       padding: 0 var(--spacing-md);
     }
 
-    // Left Section - Logo & System Info
+    // Left Section - Mobile Menu & Logo
     .header-left {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+
+      .mobile-menu-btn {
+        display: none;
+        background: transparent;
+        border: 1px solid var(--kia-neutral-01);
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: var(--spacing-xs);
+        border-radius: var(--border-radius-md);
+        transition: all 0.3s ease;
+        width: 40px;
+        height: 40px;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background: var(--kia-neutral-01);
+          border-color: var(--kia-live-red);
+          color: var(--kia-live-red);
+        }
+
+        &:focus {
+          outline: 2px solid var(--kia-live-red);
+          outline-offset: 2px;
+        }
+
+        i {
+          font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+          display: flex;
+        }
+      }
+
       .logo-section {
         display: flex;
         align-items: center;

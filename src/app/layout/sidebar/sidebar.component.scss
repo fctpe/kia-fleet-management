@@ -32,7 +32,8 @@
     padding: var(--spacing-sm);
     border-bottom: 1px solid var(--kia-neutral-01);
     display: flex;
-    justify-content: flex-start; /* Changed from flex-end to fix back button placement */
+    justify-content: space-between;
+    align-items: center;
 
     .collapse-btn {
       background: transparent;
@@ -62,6 +63,44 @@
       i {
         font-size: 16px;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      @media (max-width: 768px) {
+        display: none;
+      }
+    }
+
+    .mobile-close-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--kia-neutral-01);
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--border-radius-md);
+      transition: all 0.3s ease;
+      width: 36px;
+      height: 36px;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: var(--kia-neutral-01);
+        border-color: var(--kia-live-red);
+        color: var(--kia-live-red);
+      }
+
+      &:focus {
+        outline: 2px solid var(--kia-live-red);
+        outline-offset: 2px;
+      }
+
+      i {
+        font-size: 16px;
+      }
+
+      @media (max-width: 768px) {
+        display: flex;
       }
     }
   }
@@ -190,6 +229,7 @@
   // Mobile Responsive
   @media (max-width: 768px) {
     transform: translateX(-100%);
+    z-index: 1001; // Above backdrop
     
     &.mobile-open {
       transform: translateX(0);
@@ -218,10 +258,17 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  z-index: 899;
-  display: none;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
 
-  @media (max-width: 768px) {
-    display: block;
+  &.open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  @media (min-width: 769px) {
+    display: none;
   }
 } 
