@@ -1,0 +1,677 @@
+/* Kia Fleet Management System - Global Styles */
+/* Updated with KIA 2021 Rebranding Guidelines */
+
+// Import only essential CSS libraries for now
+@import 'primeicons/primeicons.css';
+@import 'primeflex/primeflex.css';
+
+// We'll use our custom Kia theme instead of PrimeNG themes
+
+// KIA PBV Official Brand Colors & Design System - Per Style Guidelines
+:root {
+  /* 🎨 Official KIA PBV Color Palette */
+  --kia-live-red: #C41230;         /* Primary (Live Red) - CTAs, focused states, key data points */
+  --kia-white: #FFFFFF;            /* Surface - Backgrounds, high-contrast text zones */
+  --kia-midnight-navy: #05141F;    /* Ink - Body copy, headings on light backgrounds */
+  --kia-neutral-01: #F5F7F9;       /* Cool Grey 98 - Card & section backgrounds */
+  --kia-neutral-02: #8A8E94;       /* Cool Grey 60 - Secondary text, disabled elements */
+  --kia-electric-blue: #00A2FF;    /* Accent - Data visualisation highlights, links on dark backgrounds */
+
+  /* Additional Supporting Colors */
+  --kia-success: #27AE60;          /* Success states */
+  --kia-warning: #F5A623;          /* Warning states */
+  --kia-error: var(--kia-live-red); /* Error states */
+  
+  // Background Colors (light theme per guidelines)
+  --bg-primary: var(--kia-white);
+  --bg-secondary: var(--kia-neutral-01);
+  --bg-card: var(--kia-white);
+  --bg-surface: var(--kia-neutral-01);
+  --bg-accent: rgba(196, 18, 48, 0.08);
+  
+  // Text Colors (light theme per guidelines)
+  --text-primary: var(--kia-midnight-navy);
+  --text-secondary: var(--kia-neutral-02);
+  --text-accent: var(--kia-live-red);
+  --text-muted: var(--kia-neutral-02);
+  
+  /* KIA Typography System - Per Official Guidelines */
+  --kia-font-primary: 'KiaType', 'Inter', 'Helvetica', 'Arial', sans-serif;
+  --font-family-primary: var(--kia-font-primary);
+  --font-family-secondary: var(--kia-font-primary);
+  
+  // Font Sizes (per KIA PBV guidelines)
+  --font-size-h1: clamp(2.4rem, 4vw, 4rem);     /* Guidelines: clamp responsive */
+  --font-size-h2: clamp(2rem, 3.2vw, 3.2rem);   /* Guidelines: clamp responsive */
+  --font-size-h3: clamp(1.75rem, 2.5vw, 2.4rem); /* Guidelines: 1.75rem – 2.4rem */
+  --font-size-body-l: 1.125rem;                  /* Guidelines: Body L */
+  --font-size-body: 1rem;                        /* Guidelines: Body S */
+  --font-size-caption: 0.875rem;                 /* Guidelines: Caption */
+  --font-size-small: 0.875rem;
+  --font-size-xs: 0.75rem;
+  
+  // Line Heights (per guidelines)
+  --line-height-h1: 1.1;      /* Guidelines: 110% */
+  --line-height-h2: 1.1;      /* Guidelines: 110% */
+  --line-height-h3: 1.2;
+  --line-height-body: 1.5;    /* Guidelines: 150% */
+  --line-height-caption: 1.4; /* Guidelines: 140% */
+  
+  // Spacing (8-pt scale per guidelines)
+  --spacing-xs: 8px;
+  --spacing-sm: 16px;
+  --spacing-md: 24px;
+  --spacing-lg: 32px;
+  --spacing-xl: 48px;
+  --spacing-xxl: 64px;
+  
+  // Border Radius (per guidelines)
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;     /* Guidelines: 8px radius for buttons/cards */
+  --border-radius-lg: 12px;
+  
+  // Shadows (light theme optimized)
+  --shadow-1dp: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  --shadow-4dp: 0 4px 6px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.06);
+  --shadow-8dp: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  --shadow-accent: 0 4px 16px rgba(196, 18, 48, 0.15);
+  
+  // Status Colors (per guidelines)
+  --success: var(--kia-success);
+  --warning: var(--kia-warning);
+  --error: var(--kia-error);
+  --info: var(--kia-electric-blue);
+}
+
+// Global Reset & Base Styles
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-family-primary);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+// Typography System - Per KIA PBV Guidelines
+h1, .h1 {
+  font-size: var(--font-size-h1);
+  line-height: var(--line-height-h1);
+  font-weight: 700;              /* Guidelines: weight 700 for H1 */
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--font-family-primary);
+  letter-spacing: 0;             /* Guidelines: 0 tracking for headings */
+}
+
+h2, .h2 {
+  font-size: var(--font-size-h2);
+  line-height: var(--line-height-h2);
+  font-weight: 700;              /* Guidelines: weight 700 for H2 */
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-primary);
+  letter-spacing: 0;
+}
+
+h3, .h3 {
+  font-size: var(--font-size-h3);
+  line-height: var(--line-height-h3);
+  font-weight: 600;              /* Guidelines: weight 600 for H3 */
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-primary);
+  letter-spacing: 0;
+}
+
+.body-large, .body-l {
+  font-size: var(--font-size-body-l);
+  line-height: var(--line-height-body);
+  font-weight: 400;
+  color: var(--text-primary);
+  letter-spacing: 0.2px;         /* Guidelines: 0.2px tracking for body */
+  max-width: 72ch;               /* Guidelines: max-line-width 72ch */
+}
+
+p, .body-text {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-body);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  letter-spacing: 0.2px;
+  max-width: 72ch;
+}
+
+.caption {
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-caption);
+  color: var(--text-secondary);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+// KIA 2021 Brand Typography Classes
+.kia-title {
+  font-size: clamp(32px, 6vw, 64px);
+  line-height: var(--line-height-h1);
+  font-weight: 300;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: var(--spacing-xl);
+  font-family: var(--kia-font-signature);
+  
+  &--highlight {
+    color: var(--kia-live-red);
+  }
+  
+  &--movement {
+    background: linear-gradient(135deg, var(--kia-live-red), var(--kia-afternoon-yellow));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+.kia-subtitle {
+  font-size: clamp(18px, 3vw, 32px);
+  line-height: var(--line-height-h3);
+  font-weight: 300;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-family: var(--kia-font-signature);
+}
+
+.slogan {
+  font-weight: 500;
+  color: var(--kia-live-red);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--kia-font-signature);
+  font-size: var(--font-size-h4);
+  line-height: var(--line-height-h4);
+  text-align: center;
+  
+  &::after {
+    content: '"Movement that inspires"';
+    display: block;
+    font-size: var(--font-size-small);
+    color: var(--text-muted);
+    font-style: italic;
+    margin-top: var(--spacing-xs);
+  }
+}
+
+// Layout Utilities
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+  
+  @media (min-width: 768px) {
+    padding: 0 var(--spacing-lg);
+  }
+}
+
+// Card Component - Per Guidelines (Enhanced border thickness for better UX)
+.card {
+  background: var(--bg-card);               /* Guidelines: white background */
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-4dp);           /* Guidelines: 4dp shadow */
+  padding: var(--spacing-sm);              /* Guidelines: 16px padding */
+  margin-bottom: var(--spacing-md);
+  border: 2px solid var(--kia-neutral-01); /* Enhanced: 2px border for better visual hierarchy */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  
+  &:hover {
+    box-shadow: var(--shadow-8dp);         /* Guidelines: elevate to 8dp on hover */
+    border-color: rgba(196, 18, 48, 0.3); /* Enhanced: slight red tint on hover */
+  }
+  
+  &--status {
+    border-top: 4px solid var(--kia-live-red); /* Guidelines: 4px top border for status */
+  }
+  
+  &--interactive {
+    cursor: pointer;
+    
+    &:hover {
+      box-shadow: var(--shadow-8dp);
+      border-color: var(--kia-live-red);   /* Enhanced: more prominent hover state */
+    }
+  }
+}
+
+// KIA Logo Component Styles
+.logo {
+  display: block;
+  width: 200px;
+  height: auto;
+  transition: all 0.3s ease;
+  
+  &--dark {
+    filter: invert(1); /* for white logos on dark background */
+  }
+  
+  &--header {
+    width: 120px;
+    height: auto;
+  }
+  
+  &--large {
+    width: 300px;
+    height: auto;
+  }
+}
+
+.logo-wrapper {
+  padding: var(--spacing-lg);
+  background-color: var(--kia-white);
+  text-align: center;
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+  
+  &--dark {
+    background-color: var(--kia-black);
+  }
+}
+
+// KIA PBV Button System - Per Guidelines
+.btn, .kia-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--border-radius-md);  /* Guidelines: 8px radius */
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-body);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Guidelines: default easing */
+  text-decoration: none;
+  text-align: center;
+  position: relative;
+  gap: var(--spacing-xs);
+  min-height: 48px;                        /* Guidelines: consistent button height */
+  
+  &:focus {
+    outline: 2px solid var(--kia-live-red);
+    outline-offset: 2px;
+  }
+  
+  &:disabled {
+    opacity: 0.4;                          /* Guidelines: 40% opacity for disabled */
+    cursor: not-allowed;
+  }
+  
+  // Primary Button - Red background, white text
+  &--primary, &.btn--primary {
+    background-color: var(--kia-live-red);
+    color: var(--kia-white);
+    box-shadow: var(--shadow-1dp);         /* Guidelines: 1dp shadow */
+    
+    &:hover:not(:disabled) {
+      background-color: #A00F28;           /* Guidelines: 6% darker on hover */
+      box-shadow: var(--shadow-4dp);
+    }
+  }
+  
+  // Secondary Button - Transparent with border
+  &--secondary {
+    background: transparent;
+    border: 2px solid var(--kia-midnight-navy);
+    color: var(--kia-midnight-navy);
+    
+    &:hover:not(:disabled) {
+      background: var(--kia-neutral-01);
+    }
+  }
+  
+  // Tertiary Button - Text only with underline on hover
+  &--tertiary {
+    background: transparent;
+    border: none;
+    color: var(--kia-midnight-navy);
+    padding: 8px 16px;
+    
+    &:hover:not(:disabled) {
+      text-decoration: underline;
+    }
+  }
+  
+  // Accent Button (Electric Blue)
+  &--accent {
+    background-color: var(--kia-electric-blue);
+    color: var(--kia-white);
+    box-shadow: var(--shadow-1dp);
+    
+    &:hover:not(:disabled) {
+      background-color: #0088CC;
+      box-shadow: var(--shadow-4dp);
+    }
+  }
+}
+
+// KIA Brand Sections
+.header, .footer {
+  background-color: var(--kia-black);
+  color: var(--kia-white);
+  padding: var(--spacing-md);
+}
+
+.section--yellow {
+  background-color: var(--kia-afternoon-yellow);
+  color: var(--kia-black);
+  padding: var(--spacing-xl);
+}
+
+.section--green {
+  background-color: var(--kia-forest-green);
+  color: var(--kia-white);
+  padding: var(--spacing-xl);
+}
+
+.section--grey {
+  background-color: var(--kia-city-grey);
+  color: var(--kia-white);
+  padding: var(--spacing-xl);
+}
+
+// Link Styles - KIA 2021 Branding
+a {
+  color: var(--kia-live-red);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    text-decoration: underline;
+    color: var(--kia-afternoon-yellow);
+  }
+  
+  &:visited {
+    color: rgba(187, 22, 44, 0.8);
+  }
+}
+
+// Status Indicators - Updated for KIA palette
+.status-indicator {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border-radius: var(--border-radius-sm);
+  font-size: var(--font-size-small);
+  font-weight: 500;
+  font-family: var(--kia-font-signature);
+  
+  &--online {
+    background: rgba(39, 174, 96, 0.15);
+    color: var(--success);
+    border: 1px solid rgba(39, 174, 96, 0.3);
+  }
+  
+  &--offline {
+    background: rgba(187, 22, 44, 0.15);
+    color: var(--error);
+    border: 1px solid rgba(187, 22, 44, 0.3);
+  }
+  
+  &--warning {
+    background: rgba(242, 201, 76, 0.15);
+    color: var(--warning);
+    border: 1px solid rgba(242, 201, 76, 0.3);
+  }
+  
+  &--info {
+    background: rgba(74, 144, 226, 0.15);
+    color: var(--info);
+    border: 1px solid rgba(74, 144, 226, 0.3);
+  }
+}
+
+// KIA Movement-Inspired Animations
+.movement-slide-in {
+  animation: movementSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes movementSlideIn {
+  0% {
+    transform: translateX(-100px) rotate(-5deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.inspiration-glow {
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--kia-live-red), var(--kia-afternoon-yellow), var(--kia-forest-green));
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::after {
+    opacity: 1;
+    animation: glowPulse 2s infinite;
+  }
+}
+
+@keyframes glowPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.05); opacity: 1; }
+}
+
+// PrimeNG Theme Customization - KIA 2021 Branding
+.p-component {
+  font-family: var(--kia-font-signature);
+}
+
+.p-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(232, 234, 237, 0.1);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-radius-md);
+  
+  .p-card-title {
+    color: var(--text-primary);
+    font-weight: 400;
+    font-family: var(--kia-font-signature);
+  }
+  
+  .p-card-subtitle {
+    color: var(--text-secondary);
+    font-family: var(--kia-font-signature);
+  }
+  
+  .p-card-content {
+    color: var(--text-primary);
+  }
+}
+
+.p-button {
+  font-family: var(--kia-font-signature);
+  
+  &.p-button-outlined {
+    border-color: var(--kia-live-red);
+    color: var(--kia-live-red);
+    
+    &:hover {
+      background: var(--kia-live-red);
+      border-color: var(--kia-live-red);
+      color: var(--kia-white);
+    }
+  }
+  
+  &:not(.p-button-outlined):not(.p-button-text) {
+    background: var(--kia-live-red);
+    border-color: var(--kia-live-red);
+    
+    &:hover {
+      background: #990000;
+      border-color: #990000;
+    }
+  }
+}
+
+.p-menubar {
+  background: var(--bg-secondary);
+  border: none;
+  border-bottom: 1px solid rgba(232, 234, 237, 0.1);
+  
+  .p-menubar-root-list > .p-menuitem > .p-menuitem-link {
+    color: var(--text-primary);
+    font-family: var(--kia-font-signature);
+    
+    &:hover {
+      background: var(--bg-accent);
+      color: var(--kia-live-red);
+    }
+  }
+}
+
+.p-datatable {
+  .p-datatable-header {
+    background: var(--bg-secondary);
+    border-color: rgba(232, 234, 237, 0.1);
+    color: var(--text-primary);
+    font-family: var(--kia-font-signature);
+  }
+  
+  .p-datatable-thead > tr > th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: rgba(232, 234, 237, 0.1);
+    font-family: var(--kia-font-signature);
+  }
+  
+  .p-datatable-tbody > tr {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    
+    &:nth-child(even) {
+      background: rgba(255, 255, 255, 0.02);
+    }
+    
+    &:hover {
+      background: var(--bg-accent);
+      color: var(--kia-live-red);
+    }
+    
+    > td {
+      border-color: rgba(232, 234, 237, 0.1);
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 767px) {
+  .container {
+    padding: 0 var(--spacing-sm);
+  }
+  
+  h1, .h1 {
+    font-size: 28px;
+    line-height: 34px;
+  }
+  
+  h2, .h2 {
+    font-size: 24px;
+    line-height: 30px;
+  }
+}
+
+// Utility Classes
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.mt-0 { margin-top: 0; }
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-0 { margin-bottom: 0; }
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+
+.p-0 { padding: 0; }
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+
+// Animation Utilities
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.slide-up {
+  animation: slideUp 0.4s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+// Scrollbar Styling
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--kia-red-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--kia-red-dark);
+} 

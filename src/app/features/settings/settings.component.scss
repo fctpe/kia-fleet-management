@@ -1,0 +1,728 @@
+.settings-page {
+  animation: slideInFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Settings Header
+  .settings-header {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--spacing-lg);
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .title-section {
+        h1 {
+          font-size: var(--font-size-h1);
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-xs);
+          font-family: var(--font-family-primary);
+        }
+
+        .settings-subtitle {
+          font-size: var(--font-size-body-l);
+          color: var(--text-secondary);
+          font-weight: 400;
+          max-width: 500px;
+        }
+      }
+
+      .quick-actions-header {
+        display: flex;
+        gap: var(--spacing-sm);
+
+        @media (max-width: 768px) {
+          width: 100%;
+          justify-content: flex-start;
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
+
+  // Settings Navigation
+  .settings-nav {
+    margin-bottom: var(--spacing-xl);
+
+    .nav-tabs {
+      display: flex;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs);
+      background: var(--kia-neutral-01);
+      border-radius: var(--border-radius-md);
+      overflow-x: auto;
+
+      @media (max-width: 768px) {
+        gap: 4px;
+        padding: 4px;
+      }
+
+      .nav-tab {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        padding: 12px 16px;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary);
+        font-family: var(--font-family-primary);
+        font-size: var(--font-size-body);
+        font-weight: 500;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        white-space: nowrap;
+
+        &:hover {
+          background: var(--bg-card);
+          color: var(--text-primary);
+        }
+
+        &.active {
+          background: var(--kia-midnight-navy);
+          color: var(--kia-white);
+          box-shadow: var(--shadow-4dp);
+        }
+
+        i {
+          font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+          padding: 10px 12px;
+          font-size: var(--font-size-caption);
+
+          span {
+            display: none;
+          }
+
+          i {
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  // Settings Content
+  .settings-content {
+    margin-bottom: var(--spacing-xl);
+
+    .settings-section {
+      .section-header {
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-md);
+        border-bottom: 2px solid var(--kia-neutral-01);
+
+        h2 {
+          font-size: var(--font-size-h2);
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-xs);
+          font-family: var(--font-family-primary);
+        }
+
+        p {
+          font-size: var(--font-size-body);
+          color: var(--text-secondary);
+          margin: 0;
+          max-width: 600px;
+        }
+      }
+
+      .settings-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: var(--spacing-lg);
+
+        @media (max-width: 768px) {
+          grid-template-columns: 1fr;
+          gap: var(--spacing-md);
+        }
+
+        .settings-card {
+          background: var(--bg-card);
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-lg);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+          &:hover {
+            box-shadow: var(--shadow-8dp);
+            transform: translateY(-1px);
+            border-color: var(--kia-midnight-navy);
+          }
+
+          h3 {
+            font-size: var(--font-size-h3);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-lg);
+            font-family: var(--font-family-primary);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--kia-neutral-01);
+          }
+
+          // Form Elements
+          .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              grid-template-columns: 1fr;
+              gap: var(--spacing-sm);
+            }
+
+            .form-group {
+              &.full-width {
+                grid-column: 1 / -1;
+              }
+
+              label {
+                display: block;
+                font-size: var(--font-size-body);
+                font-weight: 500;
+                color: var(--text-primary);
+                margin-bottom: var(--spacing-xs);
+              }
+
+              input,
+              select,
+              textarea {
+                width: 100%;
+                padding: 10px 12px;
+                border: 1px solid var(--kia-neutral-01);
+                border-radius: var(--border-radius-sm);
+                background: var(--bg-card);
+                color: var(--text-primary);
+                font-size: var(--font-size-body);
+                font-family: var(--font-family-primary);
+                transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                &:focus {
+                  outline: 2px solid var(--kia-live-red);
+                  outline-offset: 2px;
+                  border-color: var(--kia-live-red);
+                }
+
+                &::placeholder {
+                  color: var(--text-secondary);
+                }
+              }
+
+              input[type="number"] {
+                appearance: textfield;
+
+                &::-webkit-outer-spin-button,
+                &::-webkit-inner-spin-button {
+                  appearance: none;
+                  margin: 0;
+                }
+              }
+            }
+          }
+
+          // Toggle Switches
+          .toggle-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+
+            .toggle-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: var(--spacing-md);
+              background: var(--kia-neutral-01);
+              border-radius: var(--border-radius-md);
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+              &:hover {
+                background: var(--bg-card);
+                box-shadow: var(--shadow-2dp);
+              }
+
+              .toggle-info {
+                flex: 1;
+
+                .toggle-label {
+                  display: block;
+                  font-size: var(--font-size-body);
+                  font-weight: 500;
+                  color: var(--text-primary);
+                  margin-bottom: 4px;
+                }
+
+                .toggle-description {
+                  font-size: var(--font-size-caption);
+                  color: var(--text-secondary);
+                  font-weight: 400;
+                }
+              }
+
+              .toggle-switch {
+                position: relative;
+                display: inline-block;
+                width: 50px;
+                height: 24px;
+
+                input {
+                  opacity: 0;
+                  width: 0;
+                  height: 0;
+
+                  &:checked + .slider {
+                    background-color: var(--kia-live-red);
+
+                    &:before {
+                      transform: translateX(26px);
+                    }
+                  }
+
+                  &:focus + .slider {
+                    box-shadow: 0 0 0 2px var(--kia-live-red-opacity-20);
+                  }
+                }
+
+                .slider {
+                  position: absolute;
+                  cursor: pointer;
+                  top: 0;
+                  left: 0;
+                  right: 0;
+                  bottom: 0;
+                  background-color: var(--kia-neutral-02);
+                  border-radius: 24px;
+                  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+                  &:before {
+                    position: absolute;
+                    content: "";
+                    height: 20px;
+                    width: 20px;
+                    left: 2px;
+                    bottom: 2px;
+                    background-color: var(--kia-white);
+                    border-radius: 50%;
+                    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                    box-shadow: var(--shadow-2dp);
+                  }
+
+                  &:hover {
+                    box-shadow: var(--shadow-4dp);
+                  }
+                }
+              }
+            }
+          }
+
+          // Profile Image Section
+          .profile-image-section {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-lg);
+
+            @media (max-width: 768px) {
+              flex-direction: column;
+              text-align: center;
+            }
+
+            .current-image {
+              .image-placeholder {
+                width: 120px;
+                height: 120px;
+                background: var(--kia-neutral-01);
+                border-radius: var(--border-radius-lg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+                font-size: 48px;
+                border: 2px dashed var(--kia-neutral-02);
+              }
+            }
+
+            .image-actions {
+              flex: 1;
+
+              .btn {
+                margin-bottom: var(--spacing-sm);
+                margin-right: var(--spacing-sm);
+
+                @media (max-width: 768px) {
+                  width: 100%;
+                  margin-right: 0;
+                }
+              }
+
+              .image-note {
+                font-size: var(--font-size-caption);
+                color: var(--text-secondary);
+                margin: var(--spacing-sm) 0 0 0;
+              }
+            }
+          }
+
+          // Action Buttons
+          .action-buttons {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-top: var(--spacing-lg);
+            padding-top: var(--spacing-md);
+            border-top: 1px solid var(--kia-neutral-01);
+
+            @media (max-width: 768px) {
+              flex-direction: column;
+
+              .btn {
+                width: 100%;
+              }
+            }
+          }
+
+          // Data Retention Info
+          .data-retention-info {
+            .retention-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: var(--spacing-md) 0;
+              border-bottom: 1px solid var(--kia-neutral-01);
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              .data-type {
+                font-size: var(--font-size-body);
+                color: var(--text-primary);
+                font-weight: 500;
+              }
+
+              .retention-period {
+                font-size: var(--font-size-body);
+                color: var(--kia-live-red);
+                font-weight: 600;
+              }
+            }
+          }
+
+          // Privacy Controls
+          .privacy-controls {
+            .control-item {
+              padding: var(--spacing-lg) 0;
+              border-bottom: 1px solid var(--kia-neutral-01);
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              h4 {
+                font-size: var(--font-size-body-l);
+                font-weight: 600;
+                color: var(--text-primary);
+                margin-bottom: var(--spacing-xs);
+              }
+
+              p {
+                font-size: var(--font-size-body);
+                color: var(--text-secondary);
+                margin-bottom: var(--spacing-md);
+                line-height: 1.6;
+              }
+
+              .control-status {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-xs);
+                
+                &.enabled {
+                  color: var(--kia-success);
+                  font-weight: 500;
+                }
+
+                i {
+                  font-size: 18px;
+                }
+              }
+
+              .control-toggle {
+                display: flex;
+                justify-content: flex-end;
+              }
+            }
+          }
+
+          // System Info
+          .system-info {
+            .info-item {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: var(--spacing-md) 0;
+              border-bottom: 1px solid var(--kia-neutral-01);
+
+              &:last-child {
+                border-bottom: none;
+              }
+
+              .info-label {
+                font-size: var(--font-size-body);
+                color: var(--text-secondary);
+                font-weight: 500;
+              }
+
+              .info-value {
+                font-size: var(--font-size-body);
+                color: var(--text-primary);
+                font-weight: 600;
+                font-family: var(--font-family-mono);
+              }
+            }
+          }
+
+          // Support Links
+          .support-links {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-sm);
+
+            .support-link {
+              display: flex;
+              align-items: center;
+              gap: var(--spacing-md);
+              padding: var(--spacing-md);
+              background: var(--kia-neutral-01);
+              border-radius: var(--border-radius-md);
+              text-decoration: none;
+              color: var(--text-primary);
+              font-size: var(--font-size-body);
+              font-weight: 500;
+              transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+              &:hover {
+                background: var(--kia-midnight-navy);
+                color: var(--kia-white);
+                transform: translateX(4px);
+                box-shadow: var(--shadow-4dp);
+              }
+
+              i:first-child {
+                color: var(--kia-live-red);
+                font-size: 18px;
+              }
+
+              span {
+                flex: 1;
+              }
+
+              i:last-child {
+                font-size: 14px;
+                opacity: 0.7;
+              }
+
+              &:hover i:first-child,
+              &:hover i:last-child {
+                color: var(--kia-white);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Save Actions Bar
+  .save-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 0 var(--spacing-xl);
+    animation: slideInFromBottom 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    @media (max-width: 768px) {
+      padding: 0 var(--spacing-md);
+    }
+
+    .save-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--kia-midnight-navy);
+      color: var(--kia-white);
+      padding: var(--spacing-md) var(--spacing-lg);
+      border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+      box-shadow: var(--shadow-12dp);
+      border: 1px solid var(--kia-neutral-02);
+      border-bottom: none;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        padding: var(--spacing-md);
+      }
+
+      .save-message {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+
+        i {
+          color: var(--kia-warning);
+          font-size: 18px;
+        }
+
+        span {
+          font-size: var(--font-size-body);
+          font-weight: 500;
+        }
+      }
+
+      .save-buttons {
+        display: flex;
+        gap: var(--spacing-sm);
+
+        @media (max-width: 768px) {
+          width: 100%;
+
+          .btn {
+            flex: 1;
+          }
+        }
+
+        .btn {
+          min-width: 120px;
+          font-weight: 500;
+
+          &.btn--tertiary {
+            background: transparent;
+            border-color: var(--kia-white);
+            color: var(--kia-white);
+
+            &:hover {
+              background: var(--kia-white);
+              color: var(--kia-midnight-navy);
+            }
+          }
+
+          &.btn--primary {
+            background: var(--kia-live-red);
+            border-color: var(--kia-live-red);
+
+            &:hover {
+              background: var(--kia-live-red-dark);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Keyframe Animations
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 480px) {
+  .settings-page {
+    .settings-content {
+      .settings-section {
+        .settings-grid {
+          .settings-card {
+            padding: var(--spacing-md);
+
+            .form-grid {
+              grid-template-columns: 1fr;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Dark Mode Support (if implemented)
+@media (prefers-color-scheme: dark) {
+  .settings-page {
+    .settings-nav .nav-tabs .nav-tab {
+      &:hover {
+        background: rgba(255, 255, 255, 0.1);
+      }
+    }
+
+    .settings-content .settings-section .settings-grid .settings-card {
+      .toggle-group .toggle-item {
+        &:hover {
+          background: rgba(255, 255, 255, 0.05);
+        }
+      }
+    }
+  }
+}
+
+// Print Styles
+@media print {
+  .settings-page {
+    .settings-nav,
+    .save-actions,
+    .quick-actions-header {
+      display: none !important;
+    }
+
+    .settings-content .settings-section .settings-grid .settings-card {
+      box-shadow: none !important;
+      border: 1px solid #ddd !important;
+      break-inside: avoid;
+      margin-bottom: var(--spacing-md);
+    }
+  }
+}
+
+// High Contrast Mode Support
+@media (prefers-contrast: high) {
+  .settings-page {
+    .settings-content .settings-section .settings-grid .settings-card {
+      border-width: 2px;
+
+      .toggle-group .toggle-item .toggle-switch .slider {
+        border: 2px solid var(--text-primary);
+      }
+    }
+  }
+}
+
+// Reduced Motion Support
+@media (prefers-reduced-motion: reduce) {
+  .settings-page {
+    animation: none;
+
+    .save-actions {
+      animation: none;
+    }
+
+    .settings-content .settings-section .settings-grid .settings-card,
+    .toggle-group .toggle-item .toggle-switch .slider,
+    .support-links .support-link {
+      transition: none;
+    }
+  }
+}

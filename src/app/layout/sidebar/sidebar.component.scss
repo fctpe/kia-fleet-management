@@ -1,0 +1,227 @@
+.kia-sidebar {
+  background: var(--bg-primary);          /* Guidelines: white background */
+  border-right: 1px solid var(--kia-neutral-01);
+  box-shadow: var(--shadow-4dp);
+  height: 100vh;
+  width: 280px;
+  position: fixed;
+  left: 0;
+  top: 72px;                              /* Updated header height */
+  z-index: 900;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Guidelines: default easing */
+  display: flex;
+  flex-direction: column;
+
+  &.collapsed {
+    width: 72px;
+
+    .nav-label,
+    .nav-badge,
+    .system-status {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .nav-link {
+      justify-content: center;
+      padding: var(--spacing-md);
+    }
+  }
+
+  .sidebar-header {
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--kia-neutral-01);
+    display: flex;
+    justify-content: flex-start; /* Changed from flex-end to fix back button placement */
+
+    .collapse-btn {
+      background: transparent;
+      border: 1px solid var(--kia-neutral-01);
+      color: var(--text-secondary);
+      cursor: pointer;
+      padding: var(--spacing-xs);
+      border-radius: var(--border-radius-md);
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        background: var(--kia-neutral-01);
+        border-color: var(--kia-neutral-02);
+        color: var(--text-primary);
+      }
+
+      &:focus {
+        outline: 2px solid var(--kia-neutral-02);
+        outline-offset: 2px;
+      }
+
+      i {
+        font-size: 16px;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+    }
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--spacing-sm);
+
+    .nav-menu {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      .nav-item {
+        margin-bottom: var(--spacing-xs);
+
+        .nav-link {
+          display: flex;
+          align-items: center;
+          padding: 12px var(--spacing-sm);
+          color: var(--text-primary);
+          text-decoration: none;
+          border-radius: var(--border-radius-md);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          position: relative;
+          gap: 12px;
+          font-family: var(--font-family-primary);
+          font-weight: 500;
+          min-height: 48px;                /* Guidelines: consistent interaction height */
+
+          &:hover {
+            background: var(--kia-neutral-01);
+            color: var(--text-primary);
+          }
+
+          &:focus {
+            outline: 2px solid var(--kia-neutral-02);
+            outline-offset: 2px;
+          }
+
+          &.active {
+            background: var(--kia-neutral-01);
+            color: var(--kia-midnight-navy);
+            border-left: 4px solid var(--kia-midnight-navy); /* Changed from red to navy */
+
+            .nav-icon {
+              color: var(--kia-midnight-navy);
+            }
+          }
+
+          .nav-icon {
+            font-size: 20px;
+            color: var(--text-secondary);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            min-width: 24px;              /* Guidelines: 24px icon size */
+            text-align: center;
+          }
+
+          .nav-label {
+            flex: 1;
+            font-size: var(--font-size-body);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+
+          .nav-badge {
+            background: var(--kia-midnight-navy); /* Changed from red to navy */
+            color: var(--kia-white);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 2px 6px;
+            border-radius: 12px;
+            min-width: 18px;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+        }
+      }
+    }
+  }
+
+  .sidebar-footer {
+    padding: var(--spacing-sm);
+    border-top: 1px solid var(--kia-neutral-01);
+    background: var(--kia-neutral-01);    /* Guidelines: subtle background for footer */
+
+    .system-status {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+      .status-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing-xs);
+        padding: 4px 0;
+
+        .status-label {
+          font-size: var(--font-size-caption);
+          color: var(--text-secondary);
+          font-weight: 500;
+          font-family: var(--font-family-primary);
+        }
+
+        .status-indicator {
+          font-size: var(--font-size-caption);
+          padding: 3px 8px;
+          border-radius: var(--border-radius-md);
+          font-weight: 500;
+
+          &--online {
+            background: rgba(39, 174, 96, 0.15);
+            color: var(--success);
+            border: 1px solid rgba(39, 174, 96, 0.3);
+          }
+        }
+
+        .status-time {
+          font-size: var(--font-size-caption);
+          color: var(--text-secondary);
+          font-family: var(--font-family-primary);
+        }
+      }
+    }
+  }
+
+  // Mobile Responsive
+  @media (max-width: 768px) {
+    transform: translateX(-100%);
+    
+    &.mobile-open {
+      transform: translateX(0);
+    }
+
+    &.collapsed {
+      transform: translateX(-100%);
+    }
+  }
+
+  // Tablet
+  @media (max-width: 1024px) and (min-width: 769px) {
+    width: 240px;
+
+    &.collapsed {
+      width: 64px;
+    }
+  }
+}
+
+// Backdrop for mobile
+.sidebar-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 899;
+  display: none;
+
+  @media (max-width: 768px) {
+    display: block;
+  }
+} 

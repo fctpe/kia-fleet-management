@@ -1,0 +1,723 @@
+.fleet-overview {
+  padding: var(--spacing-md);
+  max-width: 1400px;
+  margin: 0 auto;
+
+  // Simplified Header
+  .fleet-header {
+    margin-bottom: var(--spacing-lg);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+      }
+
+      .title-section {
+        h1 {
+          font-size: var(--font-size-h1);
+          font-weight: 700;
+          color: var(--text-primary);
+          margin: 0 0 var(--spacing-xs) 0;
+          font-family: var(--font-family-primary);
+        }
+
+        .fleet-count {
+          font-size: var(--font-size-body);
+          color: var(--text-secondary);
+          margin: 0;
+        }
+      }
+
+      .status-summary {
+        display: flex;
+        gap: var(--spacing-lg);
+
+        @media (max-width: 768px) {
+          gap: var(--spacing-md);
+          flex-wrap: wrap;
+        }
+
+        .status-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+
+          .count {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-family-primary);
+          }
+
+          .label {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+          }
+
+          &.active .count {
+            color: var(--kia-live-red);
+          }
+
+          &.charging .count {
+            color: #ff9800;
+          }
+
+          &.maintenance .count {
+            color: var(--text-secondary);
+          }
+        }
+      }
+    }
+  }
+
+  // Controls Section
+  .controls-section {
+    background: var(--bg-card);
+    border: 1px solid var(--kia-neutral-01);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--spacing-sm);
+      align-items: stretch;
+    }
+
+    .view-controls {
+      display: flex;
+      gap: var(--spacing-xs);
+
+      .btn {
+        &.active {
+          background: var(--kia-live-red);
+          color: var(--kia-white);
+          border-color: var(--kia-live-red);
+        }
+      }
+    }
+
+    .search-controls {
+      display: flex;
+      gap: var(--spacing-sm);
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+      }
+
+      .search-box {
+        position: relative;
+        min-width: 250px;
+
+        @media (max-width: 768px) {
+          min-width: auto;
+        }
+
+        i {
+          position: absolute;
+          left: var(--spacing-sm);
+          top: 50%;
+          transform: translateY(-50%);
+          color: var(--text-secondary);
+          font-size: 14px;
+        }
+
+        input {
+          width: 100%;
+          padding: var(--spacing-xs) var(--spacing-sm) var(--spacing-xs) 2.5rem;
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          font-size: var(--font-size-body);
+          background: var(--bg-primary);
+          color: var(--text-primary);
+          font-family: var(--font-family-primary);
+
+          &:focus {
+            outline: 2px solid var(--kia-live-red);
+            outline-offset: 2px;
+            border-color: var(--kia-live-red);
+          }
+
+          &::placeholder {
+            color: var(--text-secondary);
+          }
+        }
+      }
+
+      .filter-select {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        border: 1px solid var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: var(--font-size-body);
+        font-family: var(--font-family-primary);
+        cursor: pointer;
+        min-width: 120px;
+
+        &:focus {
+          outline: 2px solid var(--kia-live-red);
+          outline-offset: 2px;
+          border-color: var(--kia-live-red);
+        }
+      }
+    }
+  }
+
+  // Main Content
+  .main-content {
+    // Improved List View
+    .vehicle-list {
+      .list-container {
+        display: grid;
+        gap: var(--spacing-sm);
+
+        .vehicle-card {
+          background: var(--bg-card);
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-md);
+          cursor: pointer;
+          transition: all 0.2s ease;
+
+          &:hover {
+            box-shadow: var(--shadow-4dp);
+            border-color: var(--kia-neutral-02);
+          }
+
+          &.selected {
+            border-color: var(--kia-live-red);
+            box-shadow: 0 0 0 1px var(--kia-live-red);
+          }
+
+          .vehicle-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+
+            .vehicle-identity {
+              h3 {
+                font-size: var(--font-size-h3);
+                font-weight: 600;
+                color: var(--text-primary);
+                margin: 0 0 4px 0;
+                font-family: var(--font-family-primary);
+              }
+
+              .vehicle-id {
+                font-size: var(--font-size-caption);
+                color: var(--text-secondary);
+                font-family: monospace;
+                font-weight: 500;
+              }
+            }
+
+            .status-badge {
+              display: flex;
+              align-items: center;
+              gap: 4px;
+              padding: 4px var(--spacing-xs);
+              border-radius: var(--border-radius-sm);
+              font-size: var(--font-size-caption);
+              font-weight: 600;
+              text-transform: capitalize;
+
+              &.status--active {
+                background: rgba(196, 18, 48, 0.1);
+                color: var(--kia-live-red);
+              }
+
+              &.status--charging {
+                background: rgba(255, 152, 0, 0.1);
+                color: #ff9800;
+              }
+
+              &.status--maintenance {
+                background: rgba(138, 142, 148, 0.1);
+                color: var(--text-secondary);
+              }
+
+              &.status--parked {
+                background: rgba(108, 117, 125, 0.1);
+                color: #6c757d;
+              }
+
+              i {
+                font-size: 12px;
+              }
+            }
+          }
+
+          // Improved Info Grid with Better Proximity
+          .vehicle-info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              grid-template-columns: repeat(2, 1fr);
+              gap: var(--spacing-xs);
+            }
+
+            .info-item {
+              display: flex;
+              flex-direction: column;
+              gap: 2px;
+
+              .info-label {
+                font-size: var(--font-size-caption);
+                color: var(--text-secondary);
+                font-weight: 500;
+                text-transform: uppercase;
+                letter-spacing: 0.25px;
+              }
+
+              .info-value {
+                font-size: var(--font-size-body);
+                color: var(--text-primary);
+                font-weight: 600;
+
+                &.battery {
+                  color: var(--kia-live-red);
+                }
+
+                &.speed {
+                  color: var(--kia-live-red);
+                  font-family: monospace;
+                }
+              }
+            }
+          }
+
+          // Enhanced Battery Progress Bar
+          .battery-progress {
+            width: 100%;
+            height: 6px;
+            background: var(--kia-neutral-01);
+            border-radius: 3px;
+            overflow: hidden;
+            position: relative;
+
+            .battery-bar {
+              height: 100%;
+              transition: width 0.3s ease;
+              border-radius: inherit;
+
+              &.high {
+                background: linear-gradient(90deg, #28a745 0%, #20c997 100%);
+              }
+
+              &.medium {
+                background: linear-gradient(90deg, #ffc107 0%, #fd7e14 100%);
+              }
+
+              &.low {
+                background: linear-gradient(90deg, #dc3545 0%, #e74c3c 100%);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Map View with Seoul Background
+    .map-view {
+      .interactive-map {
+        background: var(--bg-card);
+        border: 1px solid var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        position: relative;
+        height: 600px;
+
+        .map-container {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          overflow: hidden;
+
+          // Seoul Map Background
+          .seoul-map-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('/SeoulMap.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.8;
+          }
+
+          .map-overlay {
+            position: absolute;
+            top: var(--spacing-md);
+            left: var(--spacing-md);
+            z-index: 10;
+
+            .city-label {
+              background: rgba(255, 255, 255, 0.9);
+              backdrop-filter: blur(4px);
+              padding: var(--spacing-xs) var(--spacing-sm);
+              border-radius: var(--border-radius-sm);
+              font-size: var(--font-size-caption);
+              font-weight: 600;
+              color: var(--text-primary);
+              box-shadow: var(--shadow-2dp);
+              border: 1px solid rgba(255, 255, 255, 0.3);
+            }
+          }
+
+          .vehicle-marker {
+            position: absolute;
+            cursor: pointer;
+            z-index: 5;
+            transform: translate(-50%, -50%);
+            transition: all 0.2s ease;
+
+            &:hover {
+              transform: translate(-50%, -50%) scale(1.1);
+              z-index: 10;
+            }
+
+            .marker-icon {
+              width: 14px;
+              height: 14px;
+              border-radius: 50%;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border: 2px solid var(--kia-white);
+              box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+
+              i {
+                font-size: 8px;
+                color: var(--kia-white);
+              }
+            }
+
+            .marker-pulse {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              width: 24px;
+              height: 24px;
+              border-radius: 50%;
+              opacity: 0;
+              pointer-events: none;
+
+              &.active {
+                animation: pulse 3s infinite;
+                background: var(--kia-live-red);
+              }
+            }
+
+            &--active .marker-icon {
+              background: var(--kia-live-red);
+            }
+
+            &--charging .marker-icon {
+              background: #ff9800;
+            }
+
+            &--maintenance .marker-icon {
+              background: var(--text-secondary);
+            }
+
+            &--parked .marker-icon {
+              background: #6c757d;
+            }
+          }
+        }
+
+        .map-legend {
+          position: absolute;
+          bottom: var(--spacing-md);
+          right: var(--spacing-md);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(8px);
+          padding: var(--spacing-sm);
+          border-radius: var(--border-radius-md);
+          box-shadow: var(--shadow-4dp);
+          font-size: var(--font-size-caption);
+          border: 1px solid rgba(255, 255, 255, 0.3);
+
+          .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            margin-bottom: 4px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+
+            .legend-dot {
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              border: 1px solid var(--kia-white);
+
+              &.active {
+                background: var(--kia-live-red);
+              }
+
+              &.charging {
+                background: #ff9800;
+              }
+
+              &.maintenance {
+                background: var(--text-secondary);
+              }
+
+              &.parked {
+                background: #6c757d;
+              }
+            }
+
+            span {
+              color: var(--text-primary);
+              font-weight: 500;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Vehicle Detail Panel
+  .vehicle-detail-panel {
+    position: fixed;
+    top: 72px;
+    right: 0;
+    width: 360px;
+    height: calc(100vh - 72px);
+    background: var(--bg-primary);
+    border-left: 1px solid var(--kia-neutral-01);
+    box-shadow: var(--shadow-8dp);
+    z-index: 1000;
+    overflow-y: auto;
+    animation: slideInFromRight 0.2s ease;
+
+    @media (max-width: 768px) {
+      width: 100%;
+    }
+
+    .panel-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--kia-neutral-01);
+      background: var(--kia-neutral-01);
+
+      h3 {
+        font-size: var(--font-size-h3);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+        font-family: var(--font-family-primary);
+      }
+
+      .close-btn {
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: var(--spacing-xs);
+        border-radius: var(--border-radius-sm);
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: var(--bg-primary);
+          color: var(--text-primary);
+        }
+
+        i {
+          font-size: 16px;
+        }
+      }
+    }
+
+    .panel-content {
+      padding: var(--spacing-md);
+
+      .detail-section {
+        margin-bottom: var(--spacing-lg);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        h4 {
+          font-size: var(--font-size-body-l);
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-sm);
+          font-family: var(--font-family-primary);
+        }
+
+        .status-badge {
+          display: inline-flex;
+          align-items: center;
+          gap: var(--spacing-xs);
+          padding: var(--spacing-xs) var(--spacing-sm);
+          border-radius: var(--border-radius-md);
+          font-size: var(--font-size-body);
+          font-weight: 600;
+          text-transform: capitalize;
+
+          &.large {
+            padding: var(--spacing-sm) var(--spacing-md);
+            font-size: var(--font-size-body-l);
+          }
+
+          &.status--active {
+            background: rgba(196, 18, 48, 0.1);
+            color: var(--kia-live-red);
+          }
+
+          &.status--charging {
+            background: rgba(255, 152, 0, 0.1);
+            color: #ff9800;
+          }
+
+          &.status--maintenance {
+            background: rgba(138, 142, 148, 0.1);
+            color: var(--text-secondary);
+          }
+
+          &.status--parked {
+            background: rgba(108, 117, 125, 0.1);
+            color: #6c757d;
+          }
+
+          i {
+            font-size: 16px;
+          }
+        }
+
+        .info-list {
+          .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: var(--spacing-xs) 0;
+            border-bottom: 1px solid var(--kia-neutral-01);
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .label {
+              font-size: var(--font-size-body);
+              color: var(--text-secondary);
+              font-weight: 500;
+            }
+
+            .value {
+              font-size: var(--font-size-body);
+              color: var(--text-primary);
+              font-weight: 600;
+            }
+          }
+        }
+
+        .location-info {
+          p {
+            margin: 0 0 var(--spacing-xs) 0;
+            color: var(--text-primary);
+            font-size: var(--font-size-body);
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          }
+        }
+
+        .live-stats {
+          display: flex;
+          gap: var(--spacing-lg);
+
+          .stat-item {
+            text-align: center;
+
+            .stat-value {
+              display: block;
+              font-size: 2rem;
+              font-weight: 700;
+              color: var(--kia-live-red);
+              line-height: 1;
+              font-family: var(--font-family-primary);
+            }
+
+            .stat-label {
+              font-size: var(--font-size-caption);
+              color: var(--text-secondary);
+              text-transform: uppercase;
+              font-weight: 500;
+              letter-spacing: 0.5px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.8);
+  }
+  50% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .fleet-overview {
+    padding: var(--spacing-sm);
+
+    .main-content .vehicle-list .list-container .vehicle-card {
+      .vehicle-info-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+      }
+    }
+  }
+} 

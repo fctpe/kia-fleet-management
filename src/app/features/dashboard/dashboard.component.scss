@@ -1,0 +1,802 @@
+.dashboard-demo {
+  animation: slideInFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .demo-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xl) 0 var(--spacing-lg) 0;
+
+    h1 {
+      font-size: var(--font-size-h1);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-sm);
+      font-family: var(--font-family-primary);
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .demo-subtitle {
+      font-size: var(--font-size-body-l);
+      color: var(--text-secondary);
+      font-weight: 400;
+      max-width: 600px;
+      margin: 0 auto var(--spacing-md) auto;
+    }
+
+    .system-status-banner {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+      
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        align-items: center;
+      }
+
+      .status-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        font-size: var(--font-size-small);
+        color: var(--text-secondary);
+
+        .status-online {
+          color: var(--kia-success);
+          animation: pulse 2s infinite;
+        }
+      }
+    }
+  }
+
+  // Live Alerts Section
+  .alerts-section {
+    margin-bottom: var(--spacing-lg);
+
+    .alert-banner {
+      border-radius: var(--border-radius-md);
+      padding: var(--spacing-sm) var(--spacing-md);
+      margin-bottom: var(--spacing-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      animation: slideInFromTop 0.3s ease;
+
+      // Success alerts (green) - default for positive UX
+      background: rgba(39, 174, 96, 0.08);
+      border: 2px solid rgba(39, 174, 96, 0.2);
+
+      i {
+        color: var(--kia-success);
+        font-size: 18px;
+      }
+
+      span {
+        flex: 1;
+        color: var(--text-primary);
+        font-size: var(--font-size-body);
+      }
+
+      .alert-close {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 4px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+
+        &:hover {
+          background: rgba(39, 174, 96, 0.1);
+          color: var(--kia-success);
+        }
+      }
+
+      // Info alerts (blue)
+      &.alert-info {
+        background: rgba(0, 162, 255, 0.08);
+        border: 2px solid rgba(0, 162, 255, 0.2);
+
+        i {
+          color: var(--kia-electric-blue);
+        }
+
+        .alert-close:hover {
+          background: rgba(0, 162, 255, 0.1);
+          color: var(--kia-electric-blue);
+        }
+      }
+
+      // Warning alerts (red)
+      &.alert-warning {
+        background: var(--bg-accent);
+        border: 2px solid rgba(196, 18, 48, 0.2);
+
+        i {
+          color: var(--kia-live-red);
+        }
+
+        .alert-close:hover {
+          background: rgba(196, 18, 48, 0.1);
+          color: var(--kia-live-red);
+        }
+      }
+    }
+  }
+
+  // Enhanced Metrics Grid
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+
+    @media (max-width: 1024px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-sm);
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 2px solid var(--kia-neutral-01);
+      border-radius: var(--border-radius-md);
+      padding: var(--spacing-md);
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      min-height: 140px;
+
+      &:hover {
+        box-shadow: var(--shadow-8dp);
+        transform: translateY(-4px);
+        border-color: rgba(196, 18, 48, 0.3);
+      }
+
+      &--selected {
+        border-color: var(--kia-live-red);
+        background: var(--bg-accent);
+        box-shadow: var(--shadow-accent);
+        transform: translateY(-2px);
+
+        .metric-icon {
+          background: var(--kia-live-red);
+          color: var(--kia-white);
+          transform: scale(1.1);
+        }
+      }
+
+      .metric-icon {
+        width: 48px;
+        height: 48px;
+        background: var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        margin-bottom: var(--spacing-sm);
+        transition: all 0.3s ease;
+
+        i {
+          font-size: 24px;
+        }
+      }
+
+      .metric-content {
+        .metric-value {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: 2px;
+          font-family: var(--font-family-primary);
+          line-height: 1.2;
+
+          &.animated-counter {
+            display: inline-block;
+            min-width: 80px;
+          }
+        }
+
+        .metric-label {
+          font-size: var(--font-size-body);
+          color: var(--text-secondary);
+          font-weight: 500;
+          margin-bottom: 4px;
+        }
+
+        .metric-change {
+          font-size: var(--font-size-caption);
+          font-weight: 500;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+
+          &.positive {
+            color: var(--text-primary);
+
+            i {
+              color: var(--kia-success);
+            }
+          }
+
+          &.negative {
+            color: var(--text-primary);
+
+            i {
+              color: var(--kia-live-red);
+            }
+          }
+        }
+      }
+
+      // Chart visualizations
+      .metric-chart {
+        position: absolute;
+        bottom: var(--spacing-sm);
+        right: var(--spacing-sm);
+        width: 100px;
+        height: 40px;
+        opacity: 0.7;
+      }
+
+             .progress-ring {
+         position: absolute;
+         top: var(--spacing-sm);
+         right: var(--spacing-sm);
+
+         svg {
+           transform: rotate(-90deg);
+
+           .progress-circle {
+             fill: none;
+             stroke: var(--kia-neutral-01);
+             stroke-width: 4;
+             transition: stroke-dashoffset 1s ease-in-out;
+
+             &:nth-child(1) {
+               stroke: var(--kia-success);
+             }
+           }
+         }
+       }
+
+      .sparkline-container {
+        position: absolute;
+        bottom: var(--spacing-sm);
+        right: var(--spacing-sm);
+        width: 80px;
+        height: 30px;
+        opacity: 0.8;
+      }
+
+      .efficiency-gauge {
+        position: absolute;
+        bottom: var(--spacing-sm);
+        right: var(--spacing-sm);
+        left: var(--spacing-sm);
+        height: 4px;
+        background: var(--kia-neutral-01);
+        border-radius: 2px;
+        overflow: hidden;
+
+        .gauge-fill {
+          height: 100%;
+          background: linear-gradient(90deg, var(--kia-success), var(--kia-live-red));
+          border-radius: inherit;
+          transition: width 1s ease-in-out;
+        }
+      }
+    }
+  }
+
+
+
+  // Enhanced Features Section
+  .features-section {
+    margin-bottom: var(--spacing-xl);
+
+    h2 {
+      font-size: var(--font-size-h2);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+      font-family: var(--font-family-primary);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-md);
+
+      @media (max-width: 1024px) {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .feature-demo {
+        background: var(--bg-card);
+        border: 2px solid var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+
+        &:hover {
+          box-shadow: var(--shadow-8dp);
+          transform: translateY(-6px);
+          border-color: var(--kia-live-red);
+
+          .feature-header i {
+            color: var(--kia-live-red);
+            transform: scale(1.1);
+          }
+
+          .demo-preview {
+            .vehicle-dot {
+              animation: vehiclePulse 2s infinite;
+            }
+
+            .map-grid {
+              opacity: 1;
+            }
+          }
+        }
+
+        .feature-header {
+          display: flex;
+          align-items: center;
+          gap: var(--spacing-sm);
+          margin-bottom: var(--spacing-sm);
+
+          i {
+            font-size: 28px;
+            color: var(--text-secondary);
+            transition: all 0.3s ease;
+          }
+
+          h3 {
+            font-size: var(--font-size-h3);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+            font-family: var(--font-family-primary);
+          }
+        }
+
+        p {
+          margin-bottom: var(--spacing-md);
+          color: var(--text-secondary);
+          flex: 1;
+        }
+
+        .demo-preview {
+          background: var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-sm);
+          margin-bottom: var(--spacing-md);
+          height: 120px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+
+          // Enhanced Mini Map Preview
+          .mini-map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(135deg, var(--kia-neutral-01) 0%, var(--bg-primary) 100%);
+            border-radius: var(--border-radius-sm);
+
+            .map-grid {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              opacity: 0.3;
+              background-image: 
+                linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+              background-size: 20px 20px;
+              transition: opacity 0.3s ease;
+            }
+
+            .vehicle-dot {
+              position: absolute;
+              width: 10px;
+              height: 10px;
+              border-radius: 50%;
+              transition: all 0.3s ease;
+              animation: vehicleMove 4s infinite linear;
+
+              &--active {
+                background: var(--text-primary);
+                box-shadow: 0 0 8px rgba(5, 20, 31, 0.4);
+              }
+
+              &--charging {
+                background: var(--kia-live-red);
+                box-shadow: 0 0 8px rgba(196, 18, 48, 0.4);
+              }
+
+              &--maintenance {
+                background: var(--text-secondary);
+                box-shadow: 0 0 8px rgba(138, 142, 148, 0.4);
+              }
+            }
+          }
+
+          // Enhanced Mini Chart Preview
+          .mini-chart {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+          }
+
+          // Enhanced Safety Score Preview
+          .safety-score {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+
+            .score-display {
+              margin-bottom: var(--spacing-xs);
+
+              .score-value {
+                font-size: 2.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                line-height: 1;
+                font-family: var(--font-family-primary);
+              }
+
+              .score-suffix {
+                font-size: 1rem;
+                color: var(--text-secondary);
+                font-weight: 500;
+              }
+            }
+
+            .score-label {
+              font-size: var(--font-size-caption);
+              color: var(--text-secondary);
+              text-transform: uppercase;
+              font-weight: 600;
+              letter-spacing: 0.5px;
+              margin-bottom: var(--spacing-xs);
+            }
+
+            .score-bar {
+              width: 80px;
+              height: 6px;
+              background: var(--kia-neutral-01);
+              border-radius: 3px;
+              position: relative;
+              overflow: hidden;
+
+              .score-fill {
+                position: absolute;
+                left: 0;
+                top: 0;
+                height: 100%;
+                background: linear-gradient(90deg, var(--kia-success), var(--kia-live-red));
+                border-radius: inherit;
+                transition: width 1.5s ease-in-out;
+              }
+            }
+          }
+        }
+
+        .btn {
+          margin-top: auto;
+          justify-self: flex-end;
+        }
+      }
+    }
+  }
+
+  // Real-time Data Section
+  .realtime-section {
+    margin-bottom: var(--spacing-xl);
+
+    h2 {
+      font-size: var(--font-size-h2);
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-lg);
+      text-align: center;
+      font-family: var(--font-family-primary);
+    }
+
+    .realtime-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-md);
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+      }
+
+      .realtime-card {
+        background: var(--bg-card);
+        border: 2px solid var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+        box-shadow: var(--shadow-4dp);
+
+        .realtime-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: var(--spacing-md);
+          padding-bottom: var(--spacing-sm);
+          border-bottom: 1px solid var(--kia-neutral-01);
+
+          h4 {
+            font-size: var(--font-size-h3);
+            font-weight: 600;
+            color: var(--text-primary);
+            margin: 0;
+          }
+
+          .pulse-indicator {
+            width: 12px;
+            height: 12px;
+            background: var(--kia-success);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+          }
+
+          .status-online {
+            color: var(--kia-success);
+            font-size: var(--font-size-small);
+            font-weight: 600;
+          }
+        }
+
+        .mission-list {
+          .mission-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .mission-info {
+              flex: 1;
+
+              .mission-id {
+                display: block;
+                font-weight: 600;
+                color: var(--text-primary);
+                font-size: var(--font-size-small);
+              }
+
+              .mission-route {
+                display: block;
+                color: var(--text-secondary);
+                font-size: var(--font-size-caption);
+              }
+            }
+
+            .mission-progress {
+              display: flex;
+              align-items: center;
+              gap: var(--spacing-sm);
+              min-width: 100px;
+
+              .progress-bar {
+                flex: 1;
+                height: 6px;
+                background: var(--kia-neutral-01);
+                border-radius: 3px;
+                overflow: hidden;
+
+                .progress-fill {
+                  height: 100%;
+                  background: linear-gradient(90deg, var(--kia-live-red), var(--kia-success));
+                  border-radius: inherit;
+                  transition: width 0.5s ease;
+                }
+              }
+
+              .progress-text {
+                font-size: var(--font-size-caption);
+                color: var(--text-secondary);
+                font-weight: 600;
+                min-width: 35px;
+              }
+            }
+          }
+        }
+
+        .health-metrics {
+          .health-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-sm) 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+
+            &:last-child {
+              border-bottom: none;
+            }
+
+            .health-label {
+              color: var(--text-secondary);
+              font-size: var(--font-size-body);
+            }
+
+            .health-indicator {
+              display: flex;
+              align-items: center;
+              gap: var(--spacing-xs);
+
+              &.good {
+                color: var(--kia-success);
+
+                i {
+                  font-size: 16px;
+                }
+              }
+
+              .response-time,
+              .connectivity {
+                font-weight: 600;
+                color: var(--text-primary);
+                font-size: var(--font-size-small);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Enhanced Animations
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInFromTop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes vehiclePulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+@keyframes vehicleMove {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  25% {
+    transform: translateX(2px) translateY(-1px);
+  }
+  50% {
+    transform: translateX(0) translateY(-2px);
+  }
+  75% {
+    transform: translateX(-1px) translateY(-1px);
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+}
+
+// AOS (Animate On Scroll) integration
+[data-aos] {
+  pointer-events: none;
+}
+
+[data-aos].aos-animate {
+  pointer-events: auto;
+}
+
+// Mobile Responsive Adjustments
+@media (max-width: 480px) {
+  .dashboard-demo {
+    .demo-header {
+      padding: var(--spacing-md) 0;
+
+      h1 {
+        font-size: clamp(1.5rem, 5vw, 2.5rem);
+      }
+
+      .system-status-banner {
+        .status-item {
+          font-size: var(--font-size-xs);
+        }
+      }
+    }
+
+    .metrics-grid .metric-card {
+      padding: var(--spacing-sm);
+      min-height: 120px;
+
+      .metric-icon {
+        width: 40px;
+        height: 40px;
+
+        i {
+          font-size: 20px;
+        }
+      }
+
+      .metric-content .metric-value {
+        font-size: 1.5rem;
+      }
+    }
+
+    
+
+    .features-section .features-grid .feature-demo {
+      padding: var(--spacing-sm);
+
+      .demo-preview {
+        height: 100px;
+      }
+    }
+
+    .realtime-section .realtime-grid .realtime-card {
+      padding: var(--spacing-sm);
+    }
+  }
+} 

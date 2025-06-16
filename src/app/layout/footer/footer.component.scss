@@ -1,0 +1,76 @@
+.kia-footer {
+  background: var(--kia-black);
+  border-top: 1px solid rgba(232, 234, 237, 0.1);
+  margin-top: auto;
+
+  .footer-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+
+  .footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+
+    .copyright {
+      p {
+        color: var(--text-secondary);
+        font-size: var(--font-size-small);
+        margin: 0;
+        font-family: var(--kia-font-signature);
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+
+      .footer-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        font-size: var(--font-size-small);
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: var(--kia-live-red);
+        }
+      }
+
+      .divider {
+        color: var(--text-muted);
+        font-size: var(--font-size-small);
+      }
+    }
+
+    .version-info {
+      .version {
+        color: var(--text-muted);
+        font-size: var(--font-size-xs);
+        font-family: monospace;
+      }
+    }
+  }
+
+  // Mobile Responsive
+  @media (max-width: 768px) {
+    .footer-container {
+      padding: var(--spacing-md);
+    }
+
+    .footer-content {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-sm);
+
+      .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  }
+} 

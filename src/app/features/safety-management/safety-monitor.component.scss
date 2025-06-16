@@ -1,0 +1,1048 @@
+.safety-monitor {
+  animation: slideInFromBottom 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+  // Safety Header
+  .safety-header {
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--spacing-lg);
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-md);
+      }
+
+      .title-section {
+        h1 {
+          font-size: var(--font-size-h1);
+          font-weight: 700;
+          color: var(--text-primary);
+          margin-bottom: var(--spacing-xs);
+          font-family: var(--font-family-primary);
+        }
+
+        .safety-subtitle {
+          font-size: var(--font-size-body-l);
+          color: var(--text-secondary);
+          font-weight: 400;
+          max-width: 500px;
+        }
+      }
+
+      .live-status {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: var(--spacing-xs);
+
+        @media (max-width: 768px) {
+          align-items: flex-start;
+        }
+
+        .last-update {
+          font-size: var(--font-size-caption);
+          color: var(--text-secondary);
+        }
+      }
+    }
+  }
+
+  // Metrics Section
+  .metrics-section {
+    margin-bottom: var(--spacing-xl);
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-md);
+
+      @media (max-width: 1024px) {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      @media (max-width: 768px) {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .metric-card {
+        background: var(--bg-card);
+        border: 1px solid var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+        padding: var(--spacing-md);
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+        &:hover {
+          box-shadow: var(--shadow-8dp);
+          transform: translateY(-2px);
+        }
+
+        &--warning {
+          border-color: var(--kia-warning);
+          background: rgba(245, 166, 35, 0.05);
+        }
+
+        &--alert {
+          border-color: var(--kia-live-red);
+          background: var(--bg-accent);
+        }
+
+        &--risk {
+          border-color: var(--kia-electric-blue);
+          background: rgba(0, 162, 255, 0.05);
+        }
+
+        .metric-icon {
+          width: 48px;
+          height: 48px;
+          background: var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--text-secondary);
+
+          i {
+            font-size: 24px;
+          }
+
+          &.warning {
+            background: var(--kia-warning);
+            color: var(--kia-white);
+          }
+
+          &.alert {
+            background: var(--kia-live-red);
+            color: var(--kia-white);
+          }
+
+          &.risk-high {
+            background: var(--kia-live-red);
+            color: var(--kia-white);
+          }
+
+          &.risk-medium {
+            background: var(--kia-warning);
+            color: var(--kia-white);
+          }
+
+          &.risk-low {
+            background: var(--kia-success);
+            color: var(--kia-white);
+          }
+        }
+
+        .metric-content {
+          flex: 1;
+
+          .metric-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 2px;
+            font-family: var(--font-family-primary);
+          }
+
+          .metric-label {
+            font-size: var(--font-size-body);
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin-bottom: 4px;
+          }
+
+          .metric-change {
+            font-size: var(--font-size-caption);
+            font-weight: 500;
+
+            &.positive {
+              color: var(--kia-success);
+            }
+
+            &.negative {
+              color: var(--kia-live-red);
+            }
+
+            &.neutral {
+              color: var(--text-secondary);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  // Main Content
+  .main-content {
+    margin-bottom: var(--spacing-xl);
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--spacing-lg);
+
+      @media (max-width: 1200px) {
+        grid-template-columns: 1fr;
+      }
+
+      .left-column,
+      .right-column {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-lg);
+      }
+    }
+  }
+
+  // Safety Card
+  .safety-card {
+    background: var(--bg-card);
+    border: 1px solid var(--kia-neutral-01);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+    &:hover {
+      box-shadow: var(--shadow-4dp);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--kia-neutral-01);
+
+      h3 {
+        font-size: var(--font-size-h3);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin: 0;
+        font-family: var(--font-family-primary);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+      }
+
+      .alert-count {
+        background: var(--kia-live-red);
+        color: var(--kia-white);
+        font-size: var(--font-size-caption);
+        font-weight: 600;
+        padding: 4px 8px;
+        border-radius: var(--border-radius-sm);
+        min-width: 20px;
+        text-align: center;
+      }
+
+      .period-selector {
+        display: flex;
+        gap: 4px;
+
+        .btn {
+          &.active {
+            background: var(--kia-live-red);
+            color: var(--kia-white);
+          }
+        }
+      }
+    }
+  }
+
+  // Incidents List
+  .incidents-list {
+    padding: var(--spacing-md);
+
+    .incident-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius-md);
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      margin-bottom: var(--spacing-sm);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &:hover {
+        background: var(--kia-neutral-01);
+        transform: translateX(2px);
+      }
+
+      &.incident--critical {
+        border-left: 4px solid var(--kia-live-red);
+      }
+
+      &.incident--high {
+        border-left: 4px solid var(--kia-warning);
+      }
+
+      &.incident--medium {
+        border-left: 4px solid var(--kia-electric-blue);
+      }
+
+      &.incident--low {
+        border-left: 4px solid var(--kia-success);
+      }
+
+      .incident-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--kia-neutral-01);
+        border-radius: var(--border-radius-sm);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .incident-content {
+        flex: 1;
+
+        .incident-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 4px;
+
+          .incident-type {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: var(--font-size-body);
+          }
+
+          .incident-time {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+          }
+        }
+
+        .incident-details {
+          display: flex;
+          gap: var(--spacing-sm);
+          margin-bottom: 4px;
+
+          .vehicle-id {
+            font-size: var(--font-size-caption);
+            font-weight: 600;
+            color: var(--kia-live-red);
+          }
+
+          .driver-name {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+          }
+        }
+
+        .incident-location {
+          display: flex;
+          align-items: center;
+          gap: 4px;
+          font-size: var(--font-size-caption);
+          color: var(--text-secondary);
+
+          i {
+            font-size: 10px;
+          }
+        }
+      }
+
+      .incident-status {
+        .status-badge {
+          font-size: var(--font-size-caption);
+          font-weight: 500;
+          padding: 2px 8px;
+          border-radius: var(--border-radius-sm);
+
+          &.status--open {
+            background: rgba(196, 18, 48, 0.15);
+            color: var(--kia-live-red);
+          }
+
+          &.status--investigating {
+            background: rgba(245, 166, 35, 0.15);
+            color: var(--kia-warning);
+          }
+
+          &.status--resolved {
+            background: rgba(39, 174, 96, 0.15);
+            color: var(--kia-success);
+          }
+        }
+      }
+    }
+
+    .incidents-empty {
+      text-align: center;
+      padding: var(--spacing-xl);
+      color: var(--text-secondary);
+
+      i {
+        font-size: 48px;
+        color: var(--kia-success);
+        margin-bottom: var(--spacing-md);
+      }
+
+      p {
+        font-size: var(--font-size-body-l);
+        font-weight: 500;
+        margin-bottom: var(--spacing-xs);
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  // Drivers List
+  .drivers-list {
+    padding: var(--spacing-md);
+
+    .driver-item {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius-md);
+      margin-bottom: var(--spacing-sm);
+      border: 1px solid transparent;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.driver--excellent {
+        border-color: var(--kia-success);
+        background: rgba(39, 174, 96, 0.05);
+      }
+
+      &.driver--good {
+        border-color: var(--kia-electric-blue);
+        background: rgba(0, 162, 255, 0.05);
+      }
+
+      &.driver--fair {
+        border-color: var(--kia-warning);
+        background: rgba(245, 166, 35, 0.05);
+      }
+
+      &.driver--poor {
+        border-color: var(--kia-live-red);
+        background: var(--bg-accent);
+      }
+
+      .driver-avatar {
+        width: 40px;
+        height: 40px;
+        background: var(--kia-neutral-01);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        font-size: 16px;
+        flex-shrink: 0;
+      }
+
+      .driver-info {
+        flex: 1;
+
+        .driver-name {
+          font-weight: 600;
+          color: var(--text-primary);
+          margin-bottom: 2px;
+        }
+
+        .driver-stats {
+          display: flex;
+          gap: var(--spacing-sm);
+
+          .stat {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+          }
+        }
+      }
+
+      .driver-score {
+        text-align: center;
+
+        .score-circle {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-bottom: 4px;
+          position: relative;
+
+          .score-value {
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--kia-white);
+          }
+
+          &.excellent {
+            background: var(--kia-success);
+          }
+
+          &.good {
+            background: var(--kia-electric-blue);
+          }
+
+          &.fair {
+            background: var(--kia-warning);
+          }
+
+          &.poor {
+            background: var(--kia-live-red);
+          }
+        }
+
+        .score-label {
+          font-size: var(--font-size-xs);
+          color: var(--text-secondary);
+          text-transform: uppercase;
+          font-weight: 600;
+          letter-spacing: 0.5px;
+        }
+      }
+    }
+  }
+
+  // Alerts List
+  .alerts-list {
+    padding: var(--spacing-md);
+
+    .alert-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-sm);
+      border-radius: var(--border-radius-md);
+      margin-bottom: var(--spacing-sm);
+      border: 1px solid transparent;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      &.unacknowledged {
+        background: var(--bg-accent);
+        border-color: var(--kia-live-red);
+      }
+
+      &.alert--critical {
+        border-left: 4px solid var(--kia-live-red);
+      }
+
+      &.alert--high {
+        border-left: 4px solid var(--kia-warning);
+      }
+
+      &.alert--medium {
+        border-left: 4px solid var(--kia-electric-blue);
+      }
+
+      &.alert--low {
+        border-left: 4px solid var(--kia-success);
+      }
+
+      .alert-icon {
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-secondary);
+        font-size: 12px;
+        flex-shrink: 0;
+      }
+
+      .alert-content {
+        flex: 1;
+
+        .alert-message {
+          font-weight: 500;
+          color: var(--text-primary);
+          margin-bottom: 4px;
+          font-size: var(--font-size-body);
+        }
+
+        .alert-meta {
+          display: flex;
+          gap: var(--spacing-sm);
+
+          .alert-time,
+          .alert-vehicle {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+          }
+
+          .alert-vehicle {
+            font-weight: 600;
+            color: var(--kia-live-red);
+          }
+        }
+      }
+
+      .alert-actions {
+        flex-shrink: 0;
+      }
+    }
+
+    .alerts-empty {
+      text-align: center;
+      padding: var(--spacing-xl);
+      color: var(--text-secondary);
+
+      i {
+        font-size: 48px;
+        color: var(--kia-success);
+        margin-bottom: var(--spacing-md);
+      }
+
+      p {
+        font-size: var(--font-size-body-l);
+        font-weight: 500;
+        margin-bottom: var(--spacing-xs);
+        color: var(--text-primary);
+      }
+    }
+  }
+
+  // Analytics Content
+  .analytics-content {
+    padding: var(--spacing-md);
+
+    .trend-section,
+    .risk-section {
+      margin-bottom: var(--spacing-lg);
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      h4 {
+        font-size: var(--font-size-body-l);
+        font-weight: 600;
+        color: var(--text-primary);
+        margin-bottom: var(--spacing-md);
+      }
+    }
+
+    .trends-grid {
+      display: grid;
+      gap: var(--spacing-sm);
+
+      .trend-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        padding: var(--spacing-sm);
+        background: var(--kia-neutral-01);
+        border-radius: var(--border-radius-md);
+
+        .trend-icon {
+          width: 32px;
+          height: 32px;
+          border-radius: var(--border-radius-sm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--kia-white);
+          font-size: 14px;
+          flex-shrink: 0;
+
+          &.speeding {
+            background: var(--kia-live-red);
+          }
+
+          &.braking {
+            background: var(--kia-warning);
+          }
+
+          &.fatigue {
+            background: var(--kia-electric-blue);
+          }
+        }
+
+        .trend-data {
+          flex: 1;
+
+          .trend-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            display: block;
+            line-height: 1.2;
+          }
+
+          .trend-label {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+            display: block;
+            margin-bottom: 2px;
+          }
+
+          .trend-change {
+            font-size: var(--font-size-xs);
+            font-weight: 600;
+
+            &.positive {
+              color: var(--kia-success);
+            }
+
+            &.negative {
+              color: var(--kia-live-red);
+            }
+          }
+        }
+      }
+    }
+
+    .risk-breakdown {
+      .risk-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+        margin-bottom: var(--spacing-sm);
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        .risk-label {
+          font-size: var(--font-size-caption);
+          color: var(--text-secondary);
+          min-width: 100px;
+        }
+
+        .risk-bar {
+          flex: 1;
+          height: 8px;
+          background: var(--kia-neutral-01);
+          border-radius: 4px;
+          overflow: hidden;
+
+          .risk-fill {
+            height: 100%;
+            background: var(--kia-success);
+            border-radius: inherit;
+            transition: width 0.3s ease;
+          }
+        }
+
+        .risk-value {
+          font-size: var(--font-size-caption);
+          font-weight: 600;
+          color: var(--text-primary);
+          min-width: 40px;
+          text-align: right;
+        }
+      }
+    }
+  }
+
+  // Safety Map
+  .map-section {
+    margin-bottom: var(--spacing-xl);
+  }
+
+  .safety-map {
+    padding: var(--spacing-md);
+
+    .map-container {
+      position: relative;
+      height: 400px;
+      background: var(--kia-neutral-01);
+      border-radius: var(--border-radius-md);
+      overflow: hidden;
+
+      .seoul-map-bg {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 100%);
+        position: relative;
+
+        &::before {
+          content: '';
+          position: absolute;
+          top: 20%;
+          left: 30%;
+          width: 40%;
+          height: 60%;
+          background: rgba(196, 18, 48, 0.1);
+          border-radius: 50%;
+          filter: blur(20px);
+        }
+      }
+
+      .incident-marker {
+        position: absolute;
+        cursor: pointer;
+        z-index: 10;
+
+        .marker-icon {
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--kia-white);
+          font-size: 12px;
+          position: relative;
+          z-index: 2;
+        }
+
+        .marker-pulse {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 1;
+
+          &.active {
+            animation: pulse 2s infinite;
+          }
+        }
+
+        &.incident-marker--critical {
+          .marker-icon {
+            background: var(--kia-live-red);
+          }
+
+          .marker-pulse {
+            background: var(--kia-live-red);
+          }
+        }
+
+        &.incident-marker--high {
+          .marker-icon {
+            background: var(--kia-warning);
+          }
+
+          .marker-pulse {
+            background: var(--kia-warning);
+          }
+        }
+
+        &.incident-marker--medium {
+          .marker-icon {
+            background: var(--kia-electric-blue);
+          }
+
+          .marker-pulse {
+            background: var(--kia-electric-blue);
+          }
+        }
+
+        &.incident-marker--low {
+          .marker-icon {
+            background: var(--kia-success);
+          }
+
+          .marker-pulse {
+            background: var(--kia-success);
+          }
+        }
+      }
+    }
+
+    .map-legend {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-lg);
+      margin-top: var(--spacing-md);
+      padding: var(--spacing-sm);
+      background: var(--bg-card);
+      border-radius: var(--border-radius-md);
+
+      @media (max-width: 768px) {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+      }
+
+      .legend-item {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-xs);
+        font-size: var(--font-size-caption);
+        color: var(--text-secondary);
+
+        .legend-dot {
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+
+          &.critical {
+            background: var(--kia-live-red);
+          }
+
+          &.high {
+            background: var(--kia-warning);
+          }
+
+          &.medium {
+            background: var(--kia-electric-blue);
+          }
+
+          &.low {
+            background: var(--kia-success);
+          }
+        }
+      }
+    }
+  }
+
+  // Quick Actions
+  .quick-actions {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg) 0;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  // Filter Select
+  .filter-select {
+    padding: 8px 12px;
+    border: 1px solid var(--kia-neutral-01);
+    border-radius: var(--border-radius-sm);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: var(--font-size-caption);
+    font-family: var(--font-family-primary);
+    cursor: pointer;
+
+    &:focus {
+      outline: 2px solid var(--kia-live-red);
+      outline-offset: 2px;
+    }
+  }
+
+  // Button Variants
+  .btn {
+    &--small {
+      padding: 6px 12px;
+      font-size: var(--font-size-caption);
+      min-height: 32px;
+    }
+  }
+}
+
+// Animations
+@keyframes slideInFromBottom {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+// Mobile Responsive Adjustments
+@media (max-width: 480px) {
+  .safety-monitor {
+    .safety-header {
+      padding: var(--spacing-md) 0;
+
+      .header-content {
+        .title-section {
+          h1 {
+            font-size: clamp(1.5rem, 5vw, 2.5rem);
+          }
+        }
+      }
+    }
+
+    .metrics-section {
+      .metrics-grid {
+        gap: var(--spacing-xs);
+
+        .metric-card {
+          padding: var(--spacing-sm);
+
+          .metric-icon {
+            width: 40px;
+            height: 40px;
+
+            i {
+              font-size: 20px;
+            }
+          }
+
+          .metric-content .metric-value {
+            font-size: 1.5rem;
+          }
+        }
+      }
+    }
+
+    .main-content {
+      .content-grid {
+        gap: var(--spacing-md);
+      }
+    }
+
+    .safety-card {
+      .card-header {
+        padding: var(--spacing-sm);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--spacing-xs);
+
+        .header-actions {
+          width: 100%;
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    .incidents-list,
+    .drivers-list,
+    .alerts-list,
+    .analytics-content {
+      padding: var(--spacing-sm);
+    }
+  }
+} 

@@ -1,0 +1,1100 @@
+.energy-management {
+  padding: var(--spacing-md);
+  max-width: 1400px;
+  margin: 0 auto;
+
+  // Header Section
+  .energy-header {
+    margin-bottom: var(--spacing-lg);
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: var(--spacing-md) 0;
+
+      @media (max-width: 768px) {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        align-items: flex-start;
+      }
+
+      .title-section {
+        h1 {
+          font-size: var(--font-size-h1);
+          font-weight: 700;
+          color: var(--text-primary);
+          margin: 0 0 var(--spacing-xs) 0;
+          font-family: var(--font-family-primary);
+        }
+
+        .subtitle {
+          font-size: var(--font-size-body);
+          color: var(--text-secondary);
+          margin: 0;
+        }
+      }
+
+      .energy-summary {
+        display: flex;
+        gap: var(--spacing-lg);
+
+        @media (max-width: 768px) {
+          gap: var(--spacing-md);
+          flex-wrap: wrap;
+        }
+
+        .summary-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 4px;
+
+          .value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            font-family: var(--font-family-primary);
+          }
+
+          .label {
+            font-size: var(--font-size-caption);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  // Tab Controls
+  .tab-controls {
+    background: var(--bg-card);
+    border: 1px solid var(--kia-neutral-01);
+    border-radius: var(--border-radius-md);
+    padding: var(--spacing-xs);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    gap: var(--spacing-xs);
+    overflow-x: auto;
+
+    @media (max-width: 768px) {
+      gap: 4px;
+    }
+
+    .tab-btn {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm) var(--spacing-md);
+      background: transparent;
+      border: none;
+      border-radius: var(--border-radius-sm);
+      color: var(--text-secondary);
+      font-size: var(--font-size-body);
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      font-family: var(--font-family-primary);
+
+      @media (max-width: 768px) {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: var(--font-size-caption);
+      }
+
+      i {
+        font-size: 16px;
+      }
+
+      &:hover {
+        background: var(--kia-neutral-01);
+        color: var(--text-primary);
+      }
+
+      &.active {
+        background: var(--kia-live-red);
+        color: var(--kia-white);
+      }
+    }
+  }
+
+  // Main Content
+  .energy-content {
+    .tab-content {
+      // Overview Tab
+      .overview-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-rows: auto auto;
+        gap: var(--spacing-lg);
+
+        @media (max-width: 1024px) {
+          grid-template-columns: 1fr;
+          gap: var(--spacing-md);
+        }
+
+        .chart-card {
+          grid-column: 1;
+          grid-row: 1;
+          background: var(--bg-card);
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-md);
+
+          .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0;
+              font-family: var(--font-family-primary);
+            }
+
+            .chart-controls select {
+              padding: var(--spacing-xs) var(--spacing-sm);
+              border: 1px solid var(--kia-neutral-01);
+              border-radius: var(--border-radius-sm);
+              background: var(--bg-primary);
+              color: var(--text-primary);
+              font-size: var(--font-size-caption);
+              font-family: var(--font-family-primary);
+            }
+          }
+
+          .chart-container {
+            height: 300px;
+
+            .mock-chart {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+
+              .chart-bars {
+                flex: 1;
+                display: flex;
+                align-items: flex-end;
+                gap: 8px;
+                padding: var(--spacing-sm) 0;
+
+                .chart-bar {
+                  flex: 1;
+                  background: var(--kia-neutral-02);
+                  border-radius: 4px 4px 0 0;
+                  min-height: 20px;
+                  position: relative;
+                  transition: all 0.3s ease;
+                  cursor: pointer;
+
+                  &:hover {
+                    background: var(--kia-live-red);
+                  }
+
+                  .bar-value {
+                    position: absolute;
+                    top: -24px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                    font-weight: 600;
+                    white-space: nowrap;
+                  }
+                }
+              }
+
+              .chart-labels {
+                display: flex;
+                justify-content: space-between;
+                padding-top: var(--spacing-xs);
+                
+                span {
+                  font-size: var(--font-size-caption);
+                  color: var(--text-secondary);
+                  text-align: center;
+                  flex: 1;
+                }
+              }
+            }
+          }
+        }
+
+        .metrics-card {
+          grid-column: 2;
+          grid-row: 1;
+          background: var(--bg-card);
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-md);
+
+          @media (max-width: 1024px) {
+            grid-column: 1;
+          }
+
+          .card-header {
+            margin-bottom: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0;
+              font-family: var(--font-family-primary);
+            }
+          }
+
+          .metrics-grid {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+
+            .metric-item {
+              display: flex;
+              align-items: center;
+              gap: var(--spacing-sm);
+
+              .metric-icon {
+                width: 40px;
+                height: 40px;
+                background: var(--kia-neutral-01);
+                border-radius: var(--border-radius-md);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+
+                i {
+                  font-size: 20px;
+                }
+              }
+
+              .metric-content {
+                flex: 1;
+
+                .metric-value {
+                  display: block;
+                  font-size: 1.25rem;
+                  font-weight: 700;
+                  color: var(--text-primary);
+                  font-family: var(--font-family-primary);
+                }
+
+                .metric-label {
+                  display: block;
+                  font-size: var(--font-size-caption);
+                  color: var(--text-secondary);
+                  margin: 2px 0;
+                }
+
+                .metric-change {
+                  font-size: var(--font-size-caption);
+                  font-weight: 500;
+                  color: var(--text-secondary);
+
+                  &.positive {
+                    color: var(--text-primary);
+                  }
+
+                  &.negative {
+                    color: var(--kia-live-red);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .energy-flow-card {
+          grid-column: 1 / -1;
+          grid-row: 2;
+          background: var(--bg-card);
+          border: 1px solid var(--kia-neutral-01);
+          border-radius: var(--border-radius-md);
+          padding: var(--spacing-md);
+
+          .card-header {
+            margin-bottom: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0;
+              font-family: var(--font-family-primary);
+            }
+          }
+
+          .energy-flow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            flex-wrap: wrap;
+
+            @media (max-width: 768px) {
+              flex-direction: column;
+              gap: var(--spacing-md);
+            }
+
+            .flow-item {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              gap: var(--spacing-sm);
+
+              .flow-icon {
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                background: var(--kia-neutral-01);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: var(--text-secondary);
+
+                &.grid {
+                  background: var(--kia-midnight-navy);
+                  color: var(--kia-white);
+                }
+
+                &.charging {
+                  background: var(--kia-live-red);
+                  color: var(--kia-white);
+                }
+
+                &.storage {
+                  background: var(--text-secondary);
+                  color: var(--kia-white);
+                }
+
+                i {
+                  font-size: 24px;
+                }
+              }
+
+              .flow-content {
+                text-align: center;
+
+                .flow-value {
+                  display: block;
+                  font-size: 1.25rem;
+                  font-weight: 700;
+                  color: var(--text-primary);
+                  font-family: var(--font-family-primary);
+                }
+
+                .flow-label {
+                  font-size: var(--font-size-caption);
+                  color: var(--text-secondary);
+                  text-transform: uppercase;
+                  font-weight: 500;
+                }
+              }
+            }
+
+            .flow-arrow {
+              color: var(--text-secondary);
+              font-size: 24px;
+
+              @media (max-width: 768px) {
+                transform: rotate(90deg);
+              }
+            }
+          }
+        }
+      }
+
+      // Charging Stations Tab
+      .charging-grid {
+        display: grid;
+        gap: var(--spacing-lg);
+
+        .status-overview {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: var(--spacing-md);
+
+          @media (max-width: 768px) {
+            grid-template-columns: 1fr;
+          }
+
+          .status-card {
+            background: var(--bg-card);
+            border: 1px solid var(--kia-neutral-01);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+
+            .status-icon {
+              width: 40px;
+              height: 40px;
+              background: var(--kia-neutral-01);
+              border-radius: var(--border-radius-md);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              color: var(--text-secondary);
+
+              i {
+                font-size: 20px;
+              }
+            }
+
+            &.available .status-icon {
+              background: var(--kia-midnight-navy);
+              color: var(--kia-white);
+            }
+
+            &.occupied .status-icon {
+              background: var(--kia-live-red);
+              color: var(--kia-white);
+            }
+
+            &.maintenance .status-icon {
+              background: var(--text-secondary);
+              color: var(--kia-white);
+            }
+
+            .status-content {
+              .status-count {
+                display: block;
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--text-primary);
+                font-family: var(--font-family-primary);
+              }
+
+              .status-label {
+                font-size: var(--font-size-caption);
+                color: var(--text-secondary);
+                text-transform: uppercase;
+                font-weight: 500;
+              }
+            }
+          }
+        }
+
+        .stations-list {
+          .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              flex-direction: column;
+              gap: var(--spacing-sm);
+              align-items: flex-start;
+            }
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0;
+              font-family: var(--font-family-primary);
+            }
+
+            .list-controls select {
+              padding: var(--spacing-xs) var(--spacing-sm);
+              border: 1px solid var(--kia-neutral-01);
+              border-radius: var(--border-radius-sm);
+              background: var(--bg-primary);
+              color: var(--text-primary);
+              font-size: var(--font-size-body);
+              font-family: var(--font-family-primary);
+            }
+          }
+
+          .stations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              grid-template-columns: 1fr;
+            }
+
+            .station-card {
+              background: var(--bg-card);
+              border: 1px solid var(--kia-neutral-01);
+              border-radius: var(--border-radius-md);
+              padding: var(--spacing-md);
+              transition: all 0.2s ease;
+
+              &:hover {
+                box-shadow: var(--shadow-4dp);
+                border-color: var(--kia-neutral-02);
+              }
+
+              .station-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: var(--spacing-sm);
+
+                .station-info {
+                  h4 {
+                    font-size: var(--font-size-body-l);
+                    font-weight: 600;
+                    color: var(--text-primary);
+                    margin: 0 0 4px 0;
+                    font-family: var(--font-family-primary);
+                  }
+
+                  .station-location {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                  }
+                }
+
+                .station-status {
+                  display: flex;
+                  align-items: center;
+                  gap: 4px;
+                  padding: 4px var(--spacing-xs);
+                  border-radius: var(--border-radius-sm);
+                  font-size: var(--font-size-caption);
+                  font-weight: 600;
+
+                  &.status--available {
+                    background: rgba(5, 20, 31, 0.1);
+                    color: var(--kia-midnight-navy);
+                  }
+
+                  &.status--occupied {
+                    background: rgba(196, 18, 48, 0.1);
+                    color: var(--kia-live-red);
+                  }
+
+                  &.status--maintenance {
+                    background: rgba(138, 142, 148, 0.1);
+                    color: var(--text-secondary);
+                  }
+
+                  &.status--offline {
+                    background: var(--kia-neutral-01);
+                    color: var(--text-secondary);
+                  }
+
+                  i {
+                    font-size: 12px;
+                  }
+                }
+              }
+
+              .station-details {
+                margin-bottom: var(--spacing-sm);
+
+                .detail-row {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 4px;
+
+                  .detail-label {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                  }
+
+                  .detail-value {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-primary);
+                    font-weight: 600;
+                  }
+                }
+              }
+
+              .utilization-bar {
+                width: 100%;
+                height: 4px;
+                background: var(--kia-neutral-01);
+                border-radius: 2px;
+                overflow: hidden;
+
+                .utilization-fill {
+                  height: 100%;
+                  transition: width 0.3s ease;
+                  border-radius: inherit;
+                  background: var(--kia-neutral-02);
+
+                  &.high {
+                    background: var(--kia-live-red);
+                  }
+
+                  &.medium {
+                    background: var(--kia-midnight-navy);
+                  }
+
+                  &.low {
+                    background: var(--kia-neutral-02);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Battery Health Tab
+      .battery-health-content {
+        display: grid;
+        gap: var(--spacing-lg);
+
+        .battery-overview {
+          .overview-card {
+            background: var(--bg-card);
+            border: 1px solid var(--kia-neutral-01);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0 0 var(--spacing-md) 0;
+              font-family: var(--font-family-primary);
+            }
+
+            .health-distribution {
+              display: grid;
+              grid-template-columns: repeat(4, 1fr);
+              gap: var(--spacing-md);
+
+              @media (max-width: 768px) {
+                grid-template-columns: repeat(2, 1fr);
+              }
+
+              .health-item {
+                text-align: center;
+
+                .health-count {
+                  display: block;
+                  font-size: 1.5rem;
+                  font-weight: 700;
+                  color: var(--text-primary);
+                  font-family: var(--font-family-primary);
+                }
+
+                .health-label {
+                  font-size: var(--font-size-caption);
+                  color: var(--text-secondary);
+                  text-transform: uppercase;
+                  font-weight: 500;
+                  margin-top: 4px;
+                }
+
+                &.excellent {
+                  .health-count {
+                    color: var(--kia-midnight-navy);
+                  }
+                }
+
+                &.good {
+                  .health-count {
+                    color: var(--text-primary);
+                  }
+                }
+
+                &.fair {
+                  .health-count {
+                    color: var(--text-secondary);
+                  }
+                }
+
+                &.poor {
+                  .health-count {
+                    color: var(--kia-live-red);
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        .battery-list {
+          .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              flex-direction: column;
+              gap: var(--spacing-sm);
+              align-items: flex-start;
+            }
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0;
+              font-family: var(--font-family-primary);
+            }
+
+            select {
+              padding: var(--spacing-xs) var(--spacing-sm);
+              border: 1px solid var(--kia-neutral-01);
+              border-radius: var(--border-radius-sm);
+              background: var(--bg-primary);
+              color: var(--text-primary);
+              font-size: var(--font-size-body);
+              font-family: var(--font-family-primary);
+            }
+          }
+
+          .battery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-md);
+
+            @media (max-width: 768px) {
+              grid-template-columns: 1fr;
+            }
+
+            .battery-card {
+              background: var(--bg-card);
+              border: 1px solid var(--kia-neutral-01);
+              border-radius: var(--border-radius-md);
+              padding: var(--spacing-md);
+              transition: all 0.2s ease;
+
+              &:hover {
+                box-shadow: var(--shadow-4dp);
+                border-color: var(--kia-neutral-02);
+              }
+
+              .battery-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: var(--spacing-sm);
+
+                .battery-info {
+                  h4 {
+                    font-size: var(--font-size-body-l);
+                    font-weight: 600;
+                    color: var(--text-primary);
+                    margin: 0 0 4px 0;
+                    font-family: var(--font-family-primary);
+                  }
+
+                  .vehicle-id {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                    font-family: monospace;
+                  }
+                }
+
+                .health-badge {
+                  padding: 4px var(--spacing-xs);
+                  border-radius: var(--border-radius-sm);
+                  font-size: var(--font-size-caption);
+                  font-weight: 700;
+
+                  &.health--excellent {
+                    background: rgba(5, 20, 31, 0.1);
+                    color: var(--kia-midnight-navy);
+                  }
+
+                  &.health--good {
+                    background: var(--kia-neutral-01);
+                    color: var(--text-primary);
+                  }
+
+                  &.health--fair {
+                    background: rgba(138, 142, 148, 0.1);
+                    color: var(--text-secondary);
+                  }
+
+                  &.health--poor {
+                    background: rgba(196, 18, 48, 0.1);
+                    color: var(--kia-live-red);
+                  }
+                }
+              }
+
+              .battery-metrics {
+                margin-bottom: var(--spacing-sm);
+
+                .metric-row {
+                  display: flex;
+                  justify-content: space-between;
+                  margin-bottom: 4px;
+
+                  .metric-label {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                    font-weight: 500;
+                  }
+
+                  .metric-value {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-primary);
+                    font-weight: 600;
+                  }
+                }
+              }
+
+              .health-progress {
+                width: 100%;
+                height: 6px;
+                background: var(--kia-neutral-01);
+                border-radius: 3px;
+                overflow: hidden;
+
+                .health-bar {
+                  height: 100%;
+                  transition: width 0.3s ease;
+                  border-radius: inherit;
+
+                  &.health--excellent {
+                    background: var(--kia-midnight-navy);
+                  }
+
+                  &.health--good {
+                    background: var(--text-primary);
+                  }
+
+                  &.health--fair {
+                    background: var(--text-secondary);
+                  }
+
+                  &.health--poor {
+                    background: var(--kia-live-red);
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+
+      // Cost Analytics Tab
+      .analytics-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--spacing-lg);
+
+        @media (max-width: 1024px) {
+          grid-template-columns: 1fr;
+        }
+
+        .cost-breakdown {
+          .breakdown-card {
+            background: var(--bg-card);
+            border: 1px solid var(--kia-neutral-01);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0 0 var(--spacing-md) 0;
+              font-family: var(--font-family-primary);
+            }
+
+            .cost-items {
+              margin-bottom: var(--spacing-lg);
+
+              .cost-item {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-sm);
+                margin-bottom: var(--spacing-md);
+                padding: var(--spacing-sm);
+                border-radius: var(--border-radius-sm);
+                background: var(--kia-neutral-01);
+
+                .cost-icon {
+                  width: 40px;
+                  height: 40px;
+                  background: var(--kia-neutral-02);
+                  border-radius: var(--border-radius-md);
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                  color: var(--text-secondary);
+
+                  &.energy {
+                    background: var(--kia-live-red);
+                    color: var(--kia-white);
+                  }
+
+                  &.maintenance {
+                    background: var(--kia-midnight-navy);
+                    color: var(--kia-white);
+                  }
+
+                  &.infrastructure {
+                    background: var(--text-secondary);
+                    color: var(--kia-white);
+                  }
+
+                  i {
+                    font-size: 20px;
+                  }
+                }
+
+                .cost-content {
+                  flex: 1;
+
+                  .cost-label {
+                    display: block;
+                    font-size: var(--font-size-body);
+                    color: var(--text-primary);
+                    font-weight: 500;
+                  }
+
+                  .cost-value {
+                    display: block;
+                    font-size: 1.125rem;
+                    font-weight: 700;
+                    color: var(--text-primary);
+                    font-family: var(--font-family-primary);
+                  }
+
+                  .cost-percentage {
+                    font-size: var(--font-size-caption);
+                    color: var(--text-secondary);
+                  }
+                }
+              }
+            }
+
+            .total-cost {
+              padding: var(--spacing-sm);
+              border-top: 2px solid var(--kia-neutral-01);
+              text-align: center;
+
+              .total-label {
+                display: block;
+                font-size: var(--font-size-body);
+                color: var(--text-secondary);
+                margin-bottom: 4px;
+              }
+
+              .total-value {
+                font-size: 1.5rem;
+                font-weight: 700;
+                color: var(--kia-live-red);
+                font-family: var(--font-family-primary);
+              }
+            }
+          }
+        }
+
+        .savings-projection {
+          .projection-card {
+            background: var(--bg-card);
+            border: 1px solid var(--kia-neutral-01);
+            border-radius: var(--border-radius-md);
+            padding: var(--spacing-md);
+
+            h3 {
+              font-size: var(--font-size-h3);
+              font-weight: 600;
+              color: var(--text-primary);
+              margin: 0 0 var(--spacing-md) 0;
+              font-family: var(--font-family-primary);
+            }
+
+            .savings-content {
+              .savings-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: var(--spacing-sm);
+                margin-bottom: var(--spacing-xs);
+                border-radius: var(--border-radius-sm);
+                background: var(--kia-neutral-01);
+
+                .savings-label {
+                  font-size: var(--font-size-body);
+                  color: var(--text-primary);
+                  font-weight: 500;
+                }
+
+                .savings-value {
+                  font-size: var(--font-size-body);
+                  font-weight: 700;
+                  font-family: var(--font-family-primary);
+
+                  &.positive {
+                    color: var(--kia-midnight-navy);
+                  }
+                }
+              }
+
+              .savings-total {
+                margin-top: var(--spacing-md);
+                padding: var(--spacing-sm);
+                border-top: 2px solid var(--kia-neutral-01);
+                background: rgba(5, 20, 31, 0.05);
+                border-radius: var(--border-radius-sm);
+                text-align: center;
+
+                .total-savings-label {
+                  display: block;
+                  font-size: var(--font-size-body);
+                  color: var(--text-primary);
+                  font-weight: 600;
+                  margin-bottom: 4px;
+                }
+
+                .total-savings-value {
+                  font-size: 1.5rem;
+                  font-weight: 700;
+                  color: var(--kia-midnight-navy);
+                  font-family: var(--font-family-primary);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Mobile Responsive
+@media (max-width: 768px) {
+  .energy-management {
+    padding: var(--spacing-sm);
+
+    .energy-content .tab-content {
+      .overview-grid {
+        .energy-flow .flow-arrow {
+          transform: rotate(90deg);
+        }
+      }
+
+      .charging-grid .status-overview {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .battery-health-content .battery-overview .overview-card .health-distribution {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+      }
+
+      .analytics-content {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+      }
+    }
+  }
+} 

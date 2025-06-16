@@ -1,0 +1,152 @@
+.app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-primary);
+
+  .main-wrapper {
+    display: flex;
+    flex: 1;
+    position: relative;
+
+    .content-area {
+      flex: 1;
+      margin-left: 280px; // Sidebar width
+      transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      background: var(--bg-primary);
+      min-height: calc(100vh - 72px); // Full height minus header
+
+      .content-container {
+        padding: var(--spacing-lg);
+        max-width: 1400px;
+        margin: 0 auto;
+        
+        // Responsive container
+        @media (max-width: 1440px) {
+          max-width: 1200px;
+        }
+        
+        @media (max-width: 1200px) {
+          max-width: 960px;
+        }
+      }
+    }
+
+    // Sidebar collapsed state
+    .kia-sidebar.collapsed + .content-area {
+      margin-left: 72px;
+    }
+
+    // Mobile responsive
+    @media (max-width: 768px) {
+      .content-area {
+        margin-left: 0;
+        padding-top: 0;
+
+        .content-container {
+          padding: var(--spacing-md);
+        }
+      }
+
+      .kia-sidebar.collapsed + .content-area {
+        margin-left: 0;
+      }
+    }
+
+    // Tablet responsive
+    @media (max-width: 1024px) and (min-width: 769px) {
+      .content-area {
+        margin-left: 240px;
+      }
+
+      .kia-sidebar.collapsed + .content-area {
+        margin-left: 64px;
+      }
+    }
+  }
+}
+
+// Global layout utilities
+.page-header {
+  margin-bottom: var(--spacing-xl);
+  
+  h1 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-family: var(--kia-font-signature);
+  }
+  
+  .page-subtitle {
+    color: var(--text-secondary);
+    font-size: var(--font-size-body);
+  }
+}
+
+.content-grid {
+  display: grid;
+  gap: var(--spacing-lg);
+  
+  &--two-columns {
+    grid-template-columns: 1fr 1fr;
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &--three-columns {
+    grid-template-columns: repeat(3, 1fr);
+    
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr 1fr;
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  &--four-columns {
+    grid-template-columns: repeat(4, 1fr);
+    
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+// Loading states
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(5, 20, 31, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 3px solid rgba(187, 22, 44, 0.3);
+    border-top: 3px solid var(--kia-live-red);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
