@@ -219,13 +219,29 @@ p, .body-text {
 
 // Layout Utilities
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
   padding: 0 var(--spacing-md);
   
   @media (min-width: 768px) {
     padding: 0 var(--spacing-lg);
   }
+}
+
+// Dashboard-specific full-width container
+.dashboard-container {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Full-width utility classes
+.w-full {
+  width: 100% !important;
+}
+
+.max-w-none {
+  max-width: none !important;
 }
 
 // Card Component - Per Guidelines (Enhanced border thickness for better UX)

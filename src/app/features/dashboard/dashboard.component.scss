@@ -12,17 +12,15 @@
       color: var(--text-primary);
       margin-bottom: var(--spacing-sm);
       font-family: var(--font-family-primary);
-      max-width: 800px;
-      margin-left: auto;
-      margin-right: auto;
     }
 
     .demo-subtitle {
       font-size: var(--font-size-body-l);
       color: var(--text-secondary);
       font-weight: 400;
-      max-width: 600px;
-      margin: 0 auto var(--spacing-md) auto;
+      margin: 0 0 var(--spacing-md) 0;
+      max-width: none; // Override global paragraph max-width constraint
+      text-align: center; // Explicitly center the text
     }
 
     .system-status-banner {

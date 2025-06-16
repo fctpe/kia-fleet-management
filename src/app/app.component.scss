@@ -8,6 +8,7 @@
     display: flex;
     flex: 1;
     position: relative;
+    width: 100%;
 
     .content-area {
       flex: 1;
@@ -15,19 +16,24 @@
       transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       background: var(--bg-primary);
       min-height: calc(100vh - 72px); // Full height minus header
+      width: calc(100% - 280px); // Ensure proper width calculation
 
       .content-container {
         padding: var(--spacing-lg);
-        max-width: 1400px;
-        margin: 0 auto;
+        width: 100%;
+        max-width: none; // Remove any width restrictions
         
-        // Responsive container
-        @media (max-width: 1440px) {
-          max-width: 1200px;
+        // Responsive padding adjustments
+        @media (max-width: 1200px) {
+          padding: var(--spacing-md) var(--spacing-lg);
         }
         
-        @media (max-width: 1200px) {
-          max-width: 960px;
+        @media (max-width: 768px) {
+          padding: var(--spacing-md);
+        }
+        
+        @media (max-width: 480px) {
+          padding: var(--spacing-sm);
         }
       }
     }
@@ -35,12 +41,14 @@
     // Sidebar collapsed state
     .kia-sidebar.collapsed + .content-area {
       margin-left: 72px;
+      width: calc(100% - 72px);
     }
 
     // Mobile responsive
     @media (max-width: 768px) {
       .content-area {
         margin-left: 0;
+        width: 100% !important;
         padding-top: 0;
 
         .content-container {
@@ -50,6 +58,7 @@
 
       .kia-sidebar.collapsed + .content-area {
         margin-left: 0;
+        width: 100% !important;
       }
     }
 
@@ -57,10 +66,12 @@
     @media (max-width: 1024px) and (min-width: 769px) {
       .content-area {
         margin-left: 240px;
+        width: calc(100% - 240px);
       }
 
       .kia-sidebar.collapsed + .content-area {
         margin-left: 64px;
+        width: calc(100% - 64px);
       }
     }
   }
